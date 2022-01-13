@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../services/firebase";
 import { signOut } from "firebase/auth";
+import { Card } from "../card/card";
+import { IoPerson, IoStatsChart, IoMic, 
+         IoImage, IoVideocam, IoSend } from "react-icons/io5";
+import { IoMdHappy, IoMdSad } from "react-icons/io";
 import axios from "axios";
 import useInput from "../sign/input-hook";
 import logo from "../images/Logo.png"
 import './homepage.css';
-import { Card } from "../card/card";
-import { IoPerson, IoStatsChart, IoMic, 
-        IoImage, IoVideocam, IoSend } from "react-icons/io5";
 
 export const Home = () => {
 const navigate = useNavigate();
@@ -61,16 +62,21 @@ return(
     <div id="body">
         <div id="left-pane">
             <div id="left-pane-items">
-                <div id='left-item-one'><IoPerson style={{verticalAlign: 'middle', color: 'black'}} size='35px'/><h4>{avi_diplayname.displayname}</h4></div>
-                <div id='left-item-two'><IoStatsChart style={{verticalAlign: 'middle', color: 'black'}} size='35px'/><h4>90%</h4></div>
+                <div id='left-item-one'><IoPerson style={{verticalAlign: 'middle', color: 'black'}} size='30px'/><h4>{avi_diplayname.displayname}</h4></div>
+                <div id='left-item-two'><IoMdHappy style={{verticalAlign: 'middle', color: 'black'}} size='30px'/><h4>999</h4>
+                <IoMdSad style={{verticalAlign: 'middle', color: 'black'}} size='30px'/><h4>999</h4></div>
+                <div id='left-item-three'><IoStatsChart style={{verticalAlign: 'middle', color: 'black'}} size='30px'/><h4>90%</h4></div>
             </div>
         </div>
         <div id="middle-pane">
-            {data.map(item => <Card key = {item._id}
+            <div id="card-border">
+                {data.map(item => <Card key = {item._id}
                                     write = {item.quil}
                                     name = {item.displayname}
                                     profileImg = {item.profileUrl}
-                                        />)}      
+                                    />)} 
+                <hr/>     
+            </div>
         </div>
         <div id="right-pane">
             <div id='menu-items'>

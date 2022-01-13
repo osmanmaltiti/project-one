@@ -33,7 +33,7 @@ const handleLogIn = async(event) => {
 
 const handleSignUp = async(event) => {
     event.preventDefault();
-    const defaultProfile = "https://firebasestorage.googleapis.com/v0/b/project-one-2c857.appspot.com/o/default%2Fdefaultprofile?alt=media&token=24f68a6b-23f4-4083-b3c0-1ba2471f3e3a";
+    const defaultProfile = process.env.REACT_APP_DEFAULT_PROFILE_URL;
     reset_fullname(); reset_displayname();
     reset_email(); reset_number();
     reset_password_reg(); reset_con_pass();

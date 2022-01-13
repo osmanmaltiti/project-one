@@ -1,6 +1,6 @@
 import React from "react";
 import './card.css';
-import {IoCaretUp, IoCaretDown} from 'react-icons/io5';
+import {IoMdThumbsUp, IoMdThumbsDown, IoMdMore} from 'react-icons/io';
 
 export const Card = (props) => {
     return(
@@ -10,21 +10,29 @@ export const Card = (props) => {
                 <div id='write-area'>
                     {props.write}
                 </div>
+                <button className="icon-button">
+                    <IoMdMore size={'25px'}/>
+                </button>
             </div>
             <div id="bottom">
                 <div id='userhandle'>
-                    {props.name}
+                    @{props.name}
                 </div>
                 <div id='card-extras'>
                     <div id="card-extras-buttons">
-                    <IoCaretUp size='30px' style={{verticalAlign: 'middle'}}/>
+                    <button className="icon-button">
+                        <IoMdThumbsUp size='25px' style={  {verticalAlign: 'top'}}/>
+                    </button>    
                     <p>999</p>
-                    <IoCaretDown size='30px' style={{verticalAlign: 'middle'}}/>
+                    <button className="icon-button down">
+                        <IoMdThumbsDown size='25px' style={{verticalAlign: 'bottom'}}/>
+                    </button>
                     <p>999</p>
                     </div>
                     21/12/2021
                 </div>
             </div>
+            <hr style={{color:"black", width:'93%'}} />
         </div>
     )
 }
