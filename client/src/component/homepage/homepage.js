@@ -6,6 +6,7 @@ import { Card } from "../card/card";
 import { IoPerson, IoStatsChart, IoMic, 
          IoImage, IoVideocam, IoSend } from "react-icons/io5";
 import { IoMdHappy, IoMdSad } from "react-icons/io";
+import { useCustom } from "./customhook";
 import axios from "axios";
 import useInput from "../sign/input-hook";
 import logo from "../images/Logo.png"
@@ -16,21 +17,24 @@ const navigate = useNavigate();
 const [write, reset_write] = useInput('');
 const [data, setData] = useState([]);
 const [avi_diplayname, setAvi_displayname] = useState({});
-
+const [like, unlike, increment, decrement] = useCustom();
 const logOut = () => {
     signOut(auth);
     navigate('/');
 };
-
+const handleInc = () => {
+    increment()
+}
+const handleDec = () => {
+    decrement()
+}
 useEffect(() => {
     const refresh = setInterval(() => {
         (async() => {
-            const userAvi = axios.get(`/user/${auth.currentUser.uid}`);
-            const cardItems = axios.get('user/quil');
-            const allData = await axios.all([userAvi, cardItems]);
-            const [resAvi, resData] = allData;
-            setAvi_displayname(resAvi.data);
-            setData(resData.data);
+            const userAvi = await axios.get(`/user/${auth.currentUser.uid}`);
+            const cardItems = await axios.get('user/quil');
+            setAvi_displayname(userAvi.data);
+            setData(cardItems.data);
         })();
     }, 3000);
 
@@ -50,6 +54,7 @@ const handleQuil = async(e) => {
     }
     catch(err){ console.log(err); }
 };
+
 return(
 <div id="main">
     <div id="header">
@@ -74,14 +79,18 @@ return(
                                     write = {item.quil}
                                     name = {item.displayname}
                                     profileImg = {item.profileUrl}
+                                    like = {like}
+                                    unlike = {unlike}
+                                    likeMe = {handleInc}
+                                    unlikeMe = {handleDec}
                                     />)} 
                 <hr/>     
             </div>
         </div>
         <div id="right-pane">
             <div id='menu-items'>
-                <button className="menu-buttons">Profile</button>
-                <button className="menu-buttons">Explore</button>
+                <button className="menu-buttons" onClick={() => navigate('/home/profile')}>Profile</button>
+                <button className="menu-buttons" onClick={handleInc}>Explore </button>
                 <button className="menu-buttons">Videos</button>
                 <button className="menu-buttons">Settings</button>
             </div>

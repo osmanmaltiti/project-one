@@ -1,0 +1,49 @@
+#main-user-profile{
+  display: flex; flex-direction: column;
+  position: fixed; width: 100%; height: 100%;
+}
+#profile-header{
+  display: flex; flex-direction: row;
+    padding: 1rem 0rem 1rem 0rem; height: 10%;
+    width:100%; height: 5%; 
+    justify-content:space-between;
+    box-shadow: 0px 0px 5px 2px rgb(212, 211, 211);
+    padding-bottom: 10px;
+}
+#upper-half{
+  height: 30%; width: 100%; 
+}
+#profile-card{
+  display: flex;
+  flex-direction: row; gap: 1rem; width: fit-content; padding: 20px; margin-top: 1rem;
+}
+#credentials{
+  display: flex; flex-direction: column;
+  padding-top: 1rem;
+}
+.credentials-item{
+  margin-top: -10px; font-family: 'Roboto';
+  font-size: 18px;
+}
+#lower-half{
+  height: 65%; width: 100%;
+  display: flex; flex-direction: column;
+  align-items: center;
+}
+#avi{
+  height: 8rem; width: 8rem;
+  border-radius: 50%; border: none;
+  background: none; overflow: hidden;
+  background-size: cover; background-position: center;
+}
+#profile-avi{
+  width: 7.2rem; height: 7.2rem; background-size: cover;
+    border-radius: 50%; background-position: center;
+    box-shadow: 0px 0px 5px 1px rgb(165, 163, 163);
+}
+.change-avi{
+  background-color: white; width: 13rem; position: fixed; 
+  height: 2.5rem; padding: 1rem 10px 0px 10px;
+  border-radius: 6px; box-shadow: 0px 0px 5px 1px rgb(187, 186, 186);
+  font-family: 'Roboto Condensed'; font-size: 15px;
+}

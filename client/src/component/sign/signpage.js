@@ -39,7 +39,7 @@ const handleSignUp = async(event) => {
     reset_password_reg(); reset_con_pass();
     try{
         const newUser = await createUserWithEmailAndPassword(auth, email.value, password_reg.value);
-        const storageRef = ref(storage, `/users/${auth.currentUser.uid}/file_name`);
+        const storageRef = ref(storage, `/users/${auth.currentUser.uid}/profile`);
         await uploadBytesResumable(storageRef, file);
         navigate('/home');
         await axios.post('/user', {

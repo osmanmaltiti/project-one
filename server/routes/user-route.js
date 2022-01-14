@@ -29,6 +29,11 @@ router.get('/quil', (req, res) => {
     }
   });
 });
+router.get('/', (req, res) => {
+  User.find((err, results) => {
+    res.json(results)
+  })
+})
 
 router.post('/', async(req, res) => {
   const { uid, fullname, displayname, 
@@ -73,9 +78,26 @@ router.get('/:uid', (req, res) => {
     if(err){
       console.log(err)}
     else{
-      const {displayname, profileUrl} = userData;
-      res.json({displayname, profileUrl})};
+      const {displayname, profileUrl, fullname, quil} = userData;
+      res.json({
+        displayname, 
+        profileUrl,
+        fullname,
+        quil
+      })};
   });
 });
+
+router.patch('/:uid', (req, res) => {
+  const { uid } = req.params;
+  const { profileUrl } = req.body;
+  console.log(profileUrl)
+  User.updateOne({uid: uid}, { profileUrl: profileUrl }, (err) => {
+    err && console.log(err);
+  });
+  Quil.updateMany({uid: uid}, { profileUrl: profileUrl }, (err) => {
+    err && console.log(err);
+  })
+})
 
 module.exports = router;

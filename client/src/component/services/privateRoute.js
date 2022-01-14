@@ -14,7 +14,7 @@ const PrivateRoute = ({children}) => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setState(<Navigate to={'/'}/>)
-        }, 2000);
+        }, 4000);
         return () => {
             user && clearTimeout(timer);
         }
