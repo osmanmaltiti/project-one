@@ -46,10 +46,18 @@
 .icon-button{
     width: fit-content; height: fit-content;
     background: none; border: none;
-}.icon-button:first-child:hover{
+}.icon-button:hover{
     cursor: pointer; color: rgb(0, 122, 0);
-}.icon-button:last-child:hover{
+}
+[type = radio]{
+    opacity: 0; width: 0; height: 0;
+}
+[type = radio]:focus + .icons-like {
+    color: green;
+}
+[type = radio]:hover + .icons {
     cursor: pointer;
-}.down:hover{
-    cursor: pointer; color: red;
+}
+[type = radio]:focus + .icons-unlike {
+    color: red;
 }

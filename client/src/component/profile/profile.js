@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { auth, storage } from '../services/firebase';
 import { Card } from '../card/card';
-import { useCustom } from '../homepage/customhook';
 import Popup from 'reactjs-popup';
 import axios from 'axios';
 import logo from '../images/Logo.png'
@@ -13,10 +12,7 @@ export const Profile = () => {
   const [quils, setQuils] = useState([]);
   const [file, setFile] = useState();
   const [link, setLink] = useState(null);
-  const [like, unlike, increment, decrement] = useCustom();
-  
-  const handleInc = () => { increment(); }
-  const handleDec = () => { decrement(); }
+
   
   const handleFile = (e) => {
     e.preventDefault();
@@ -41,7 +37,7 @@ export const Profile = () => {
   useEffect(() => {
     (async() => {
       const quilRes = await axios.get('/user/quil');
-      const userRes = await axios.get(`/user/${auth.currentUser.uid}`);
+      const userRes = await axios.get(`/user/profile/${auth.currentUser.uid}`);
       const filterQuils = quilRes.data.filter(item => item.uid === auth.currentUser.uid);
       setQuils(filterQuils);
       setData(userRes.data);
@@ -83,10 +79,10 @@ export const Profile = () => {
               write = {item.quil}
               name = {item.displayname}
               profileImg = {item.profileUrl}
-              like = {like}
-              unlike = {unlike}
-              likeMe = {handleInc}
-              unlikeMe = {handleDec}
+              // like = {}
+              // unlike = {}
+              // likeMe = {}
+              // unlikeMe = {}
               />) };
           </div>
         </div>

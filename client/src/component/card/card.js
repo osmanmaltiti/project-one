@@ -20,12 +20,16 @@ export const Card = (props) => {
                 </div>
                 <div id='card-extras'>
                     <div id="card-extras-buttons">
-                    <button className="icon-button" onClick={props.likeMe}><IoMdThumbsUp size='25px' style={  {verticalAlign: 'top'}}/></button>   
+                    <label>
+                    <input type={'radio'} name="like-unlike" onClick={props.likeMe}/><IoMdThumbsUp className="icons icons-like"  size='25px' style={  {verticalAlign: 'top'}}/>   
+                    </label>
                     <p>{props.like}</p>
-                    <button className="icon-button down" onClick={props.unlikeMe}><IoMdThumbsDown size='25px' style={  {verticalAlign: 'top'}}/></button>
+                    <label>
+                    <input type={'radio'} name='like-unlike' onClick={props.unlikeMe}/><IoMdThumbsDown className="icons icons-unlike" size='25px' style={  {verticalAlign: 'top'}}/>
+                    </label>
                     <p>{props.unlike}</p>
                     </div>
-                    14/01/2022
+                    12/1/2022
                 </div>
             </div>
             <hr style={{color:"black", width:'93%'}} />

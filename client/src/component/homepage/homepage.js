@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../services/firebase";
 import { signOut } from "firebase/auth";
@@ -6,33 +6,32 @@ import { Card } from "../card/card";
 import { IoPerson, IoStatsChart, IoMic, 
          IoImage, IoVideocam, IoSend } from "react-icons/io5";
 import { IoMdHappy, IoMdSad } from "react-icons/io";
-import { useCustom } from "./customhook";
+import { useLike } from "./like-unlike";
 import axios from "axios";
 import useInput from "../sign/input-hook";
 import logo from "../images/Logo.png"
 import './homepage.css';
+
 
 export const Home = () => {
 const navigate = useNavigate();
 const [write, reset_write] = useInput('');
 const [data, setData] = useState([]);
 const [avi_diplayname, setAvi_displayname] = useState({});
-const [like, unlike, increment, decrement] = useCustom();
+let [likeState, setLikeState] = useState(true);
+let [unlikeState, setUnlikeState] = useState(true);
+
 const logOut = () => {
     signOut(auth);
     navigate('/');
 };
-const handleInc = () => {
-    increment()
-}
-const handleDec = () => {
-    decrement()
-}
+
+
 useEffect(() => {
     const refresh = setInterval(() => {
         (async() => {
-            const userAvi = await axios.get(`/user/${auth.currentUser.uid}`);
-            const cardItems = await axios.get('user/quil');
+            const userAvi = await axios.get(`/user/profile/${auth.currentUser.uid}`);
+            const cardItems = await axios.get('/user/quil');
             setAvi_displayname(userAvi.data);
             setData(cardItems.data);
         })();
@@ -42,6 +41,7 @@ useEffect(() => {
         clearInterval(refresh);
     }
 }, []);
+
 
 const handleQuil = async(e) => {
     e.preventDefault();
@@ -79,10 +79,24 @@ return(
                                     write = {item.quil}
                                     name = {item.displayname}
                                     profileImg = {item.profileUrl}
-                                    like = {like}
-                                    unlike = {unlike}
-                                    likeMe = {handleInc}
-                                    unlikeMe = {handleDec}
+                                    like = {item.likes['likes']}
+                                    unlike = {item.unlikes['unlikes']}
+                                    likeMe = {async() => {
+                                        setLikeState(!likeState)
+                                        likeState && setUnlikeState(false)
+                                        await axios.patch(`/user/quil/like/${item._id}`, {
+                                            state: likeState, 
+                                            uid: auth.currentUser.uid
+                                        });
+                                    }}
+                                    unlikeMe = {async() => {
+                                        setUnlikeState(!unlikeState)
+                                        unlikeState && setLikeState(false) 
+                                        await axios.patch(`/user/quil/unlike/${item._id}`, {
+                                            state: unlikeState, 
+                                            uid: auth.currentUser.uid
+                                        });
+                                    }}
                                     />)} 
                 <hr/>     
             </div>
@@ -90,7 +104,7 @@ return(
         <div id="right-pane">
             <div id='menu-items'>
                 <button className="menu-buttons" onClick={() => navigate('/home/profile')}>Profile</button>
-                <button className="menu-buttons" onClick={handleInc}>Explore </button>
+                <button className="menu-buttons">Explore </button>
                 <button className="menu-buttons">Videos</button>
                 <button className="menu-buttons">Settings</button>
             </div>
