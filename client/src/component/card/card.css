@@ -22,8 +22,8 @@
     background-position: center; background-size: cover;
 }
 #write-area{
-    width: 75%; overflow: hidden; 
-    height: 5.5rem;
+    width: 75%; overflow: hidden; font-family: 'Roboto';
+    height: 5.5rem; font-size: 20px; font-weight: 600;
 }
 #userhandle{
     width: fit-content; background-color: rgb(255, 253, 253);
@@ -41,7 +41,7 @@
 }
 #card-extras-buttons{
     display: flex; flex-direction: row;
-    align-items: center; gap: 1px;
+    align-items: center; gap: 10px;
 }
 .icon-button{
     width: fit-content; height: fit-content;
@@ -50,14 +50,26 @@
     cursor: pointer; color: rgb(0, 122, 0);
 }
 [type = radio]{
-    opacity: 0; width: 0; height: 0;
+    opacity: 0%; width: 0; height: 0; 
 }
-[type = radio]:focus + .icons-like {
+[type = radio]:checked + .icons-like {
     color: green;
 }
 [type = radio]:hover + .icons {
     cursor: pointer;
 }
-[type = radio]:focus + .icons-unlike {
+[type = radio]:checked + .icons-unlike {
     color: red;
+}
+#submit-button{
+    display: flex; flex-direction: row;
+    align-items: center; gap: 10px; background: none;
+    border: none;
+}
+#popup-delete{
+    height: 2rem; width: 8rem; font-size: 17px;
+    font-family: 'Roboto condensed'; border-radius: 6px;
+    background: white;
+}#popup-delete:hover{
+    cursor: pointer; color: red; font-weight: bold;
 }

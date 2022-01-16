@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { auth, storage } from '../services/firebase';
 import { Card } from '../card/card';
@@ -12,7 +14,8 @@ export const Profile = () => {
   const [quils, setQuils] = useState([]);
   const [file, setFile] = useState();
   const [link, setLink] = useState(null);
-
+  const [uploading, setUploading] = useState(0);
+  const navigate = useNavigate();
   
   const handleFile = (e) => {
     e.preventDefault();
@@ -22,7 +25,10 @@ export const Profile = () => {
   const upload = async(files) => {
     const storageRef = ref(storage, `users/${auth.currentUser.uid}/profile`);
     const uploadFile = uploadBytesResumable(storageRef, files);
-    uploadFile.on("state_changed", () => {}, (err) => console.log(err), () => {
+    uploadFile.on("state_changed", (snapshot) => {
+      const progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes)*100);
+      setUploading(progress) 
+    }, (err) => console.log(err), () => {
       getDownloadURL(uploadFile.snapshot.ref).then(url => setLink(url))
     });
   };
@@ -44,11 +50,16 @@ export const Profile = () => {
     })();
   }, [link]);
 
+  const handleSignOut = (e) => {
+    e.preventDefault();
+    signOut(auth);
+    navigate('/')
+  }
   return (
     <div id='main-user-profile'>
       <div id='profile-header'>
-        <img src={logo} alt={''}/>
-        <button className="sign-google signOut">Sign Out</button>
+        <img id='profile-logo' src={logo} alt={''}/>
+        <button className="sign-google signOut signout" onClick={handleSignOut}>Sign Out</button>
       </div>
 
       <div id='upper-half'>
@@ -56,9 +67,10 @@ export const Profile = () => {
           <Popup  trigger={
             <button id='avi'><img id='profile-avi' alt={''} src={data?.profileUrl}/></button>
           } position={'bottom left'}>
-            <div className='change-avi'>
-              <input type={'file'} onChange={(e) => setFile(e.target.files[0])}/>
-              <button onClick={handleFile}>Upload</button>
+            <div id='change-avi'>
+              <input className='change-avi' type={'file'} onChange={(e) => setFile(e.target.files[0])}/>
+              <button className='change-avi upload-button' onClick={handleFile}>Upload</button>
+              <p id='progress'>Progress: {uploading}%</p>
             </div>
           </Popup>
           <div id='credentials'>
@@ -83,7 +95,7 @@ export const Profile = () => {
               // unlike = {}
               // likeMe = {}
               // unlikeMe = {}
-              />) };
+              />) }
           </div>
         </div>
       </div>

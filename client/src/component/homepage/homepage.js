@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../services/firebase";
 import { signOut } from "firebase/auth";
@@ -6,7 +6,6 @@ import { Card } from "../card/card";
 import { IoPerson, IoStatsChart, IoMic, 
          IoImage, IoVideocam, IoSend } from "react-icons/io5";
 import { IoMdHappy, IoMdSad } from "react-icons/io";
-import { useLike } from "./like-unlike";
 import axios from "axios";
 import useInput from "../sign/input-hook";
 import logo from "../images/Logo.png"
@@ -18,8 +17,7 @@ const navigate = useNavigate();
 const [write, reset_write] = useInput('');
 const [data, setData] = useState([]);
 const [avi_diplayname, setAvi_displayname] = useState({});
-let [likeState, setLikeState] = useState(true);
-let [unlikeState, setUnlikeState] = useState(true);
+const [total, setTotal] = useState(null)
 
 const logOut = () => {
     signOut(auth);
@@ -35,8 +33,11 @@ useEffect(() => {
             setAvi_displayname(userAvi.data);
             setData(cardItems.data);
         })();
+        (async() => {
+            const allLikes = await axios.get(`/user/quil/likesUnlikes/${auth.currentUser.uid}`);
+            setTotal(allLikes.data);
+        })()
     }, 3000);
-
     return () => {
         clearInterval(refresh);
     }
@@ -55,6 +56,7 @@ const handleQuil = async(e) => {
     catch(err){ console.log(err); }
 };
 
+
 return(
 <div id="main">
     <div id="header">
@@ -68,9 +70,9 @@ return(
         <div id="left-pane">
             <div id="left-pane-items">
                 <div id='left-item-one'><IoPerson style={{verticalAlign: 'middle', color: 'black'}} size='30px'/><h4>{avi_diplayname.displayname}</h4></div>
-                <div id='left-item-two'><IoMdHappy style={{verticalAlign: 'middle', color: 'black'}} size='30px'/><h4>999</h4>
-                <IoMdSad style={{verticalAlign: 'middle', color: 'black'}} size='30px'/><h4>999</h4></div>
-                <div id='left-item-three'><IoStatsChart style={{verticalAlign: 'middle', color: 'black'}} size='30px'/><h4>90%</h4></div>
+                <div id='left-item-two'><IoMdHappy style={{verticalAlign: 'middle', color: 'black'}} size='30px'/><h4>{total?.likes}</h4>
+                <IoMdSad style={{verticalAlign: 'middle', color: 'black'}} size='30px'/><h4>{total?.unlikes}</h4></div>
+                <div id='left-item-three'><IoStatsChart style={{verticalAlign: 'middle', color: 'black'}} size='30px'/><h4>{total !== null? total.popularity !== null ? `${total.popularity}%`: '...%': '...%'}</h4></div>
             </div>
         </div>
         <div id="middle-pane">
@@ -79,24 +81,19 @@ return(
                                     write = {item.quil}
                                     name = {item.displayname}
                                     profileImg = {item.profileUrl}
-                                    like = {item.likes['likes']}
-                                    unlike = {item.unlikes['unlikes']}
-                                    likeMe = {async() => {
-                                        setLikeState(!likeState)
-                                        likeState && setUnlikeState(false)
+                                    delete = {async() => {
+                                        axios.delete(`/user/quil/${item._id}`)
+                                    }}
+                                    like = {item.likes.length}
+                                    unlike = {item.unlikes.length}
+                                    likeMe = { async() => {
                                         await axios.patch(`/user/quil/like/${item._id}`, {
-                                            state: likeState, 
                                             uid: auth.currentUser.uid
-                                        });
-                                    }}
-                                    unlikeMe = {async() => {
-                                        setUnlikeState(!unlikeState)
-                                        unlikeState && setLikeState(false) 
+                                        });} }
+                                    unlikeMe = { async() => {
                                         await axios.patch(`/user/quil/unlike/${item._id}`, {
-                                            state: unlikeState, 
                                             uid: auth.currentUser.uid
-                                        });
-                                    }}
+                                        });} }
                                     />)} 
                 <hr/>     
             </div>

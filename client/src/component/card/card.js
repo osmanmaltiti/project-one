@@ -1,6 +1,7 @@
 import React from "react";
 import './card.css';
 import {IoMdThumbsUp, IoMdThumbsDown, IoMdMore} from 'react-icons/io';
+import Popup from "reactjs-popup";
 
 export const Card = (props) => {
     return(
@@ -10,9 +11,12 @@ export const Card = (props) => {
                 <div id='write-area'>
                     {props.write}
                 </div>
-                <button className="icon-button">
+                <Popup
+                    trigger={<button className="icon-button">
                     <IoMdMore size={'25px'}/>
-                </button>
+                </button>} position={'bottom right'}>
+                    <button id="popup-delete" onClick={props.delete}>Delete</button>
+                    </Popup>
             </div>
             <div id="bottom">
                 <div id='userhandle'>
@@ -21,14 +25,15 @@ export const Card = (props) => {
                 <div id='card-extras'>
                     <div id="card-extras-buttons">
                     <label>
-                    <input type={'radio'} name="like-unlike" onClick={props.likeMe}/><IoMdThumbsUp className="icons icons-like"  size='25px' style={  {verticalAlign: 'top'}}/>   
+                        <input type={'radio'} value="like" name="likeUnlike" onChange={props.likeMe}/>
+                        <IoMdThumbsUp className="icons icons-like"  size='25px' style={ {verticalAlign: 'top'} }/>   
                     </label>
-                    <p>{props.like}</p>
+                        <p>{props.like}</p>
                     <label>
-                    <input type={'radio'} name='like-unlike' onClick={props.unlikeMe}/><IoMdThumbsDown className="icons icons-unlike" size='25px' style={  {verticalAlign: 'top'}}/>
+                        <input type={'radio'} value="unlike" name='likeUnlike' onChange={props.unlikeMe}/>
+                        <IoMdThumbsDown className="icons icons-unlike" size='25px' style={ {verticalAlign: 'top'} }/>
                     </label>
-                    <p>{props.unlike}</p>
-                    </div>
+                        <p>{props.unlike}</p></div>
                     12/1/2022
                 </div>
             </div>
