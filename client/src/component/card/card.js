@@ -9,7 +9,9 @@ export const Card = (props) => {
             <div id="top">
                 <img id="card-avi" alt={"Logo"} src={props.profileImg}/>
                 <div id='write-area'>
-                    {props.write}
+                    { /project-one-2c857.appspot.com/g.test(props.write) ? 
+                                        <img id='quil-image' alt="" src={props.write} /> :
+                                                            props.write }
                 </div>
                 <Popup
                     trigger={<button className="icon-button">

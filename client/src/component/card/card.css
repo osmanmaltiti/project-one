@@ -22,8 +22,8 @@
     background-position: center; background-size: cover;
 }
 #write-area{
-    width: 75%; overflow: hidden; font-family: 'Roboto';
-    height: 5.5rem; font-size: 20px; font-weight: 600;
+    width: 75%; overflow-x: hidden; font-family: 'Roboto';
+    height: fit-content; font-size: 20px; font-weight: 600;
 }
 #userhandle{
     width: fit-content; background-color: rgb(255, 253, 253);
@@ -72,4 +72,7 @@
     background: white;
 }#popup-delete:hover{
     cursor: pointer; color: red; font-weight: bold;
+}
+#quil-image{
+    height: 27rem; width: fit-content;
 }
