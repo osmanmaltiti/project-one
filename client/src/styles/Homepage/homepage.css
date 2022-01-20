@@ -1,0 +1,281 @@
+#main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+#main #header {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem 0rem 1rem 0rem;
+  height: 10%;
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  justify-content: space-between;
+  box-shadow: 0px 0px 5px 2px #d4d3d3;
+  padding-bottom: 10px;
+}
+#main #header #nav-bar {
+  padding-right: 2rem;
+}
+#main #header #header-logo {
+  padding-left: 2rem;
+}
+#main #header #user-avi {
+  width: 5.5rem;
+  height: 5.5rem;
+  background-size: cover;
+  border-radius: 50%;
+  background-position: center;
+  box-shadow: 0px 0px 5px 1px #a5a3a3;
+}
+#main #header .signOut {
+  width: 50%;
+  font-family: "Roboto Condensed";
+  left: 25%;
+  margin: 6px 0px 10px 0px;
+  font-size: large;
+  border-color: white;
+  color: white;
+  background-color: black;
+  border-radius: 6px;
+  padding: 6px;
+  border-color: black;
+  width: 5rem;
+  background: none;
+  color: black;
+  border: none;
+}
+#main #header .signOut:hover {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  border-color: black;
+}
+#main #header .signOut:hover {
+  color: red;
+  outline: 1px solid red;
+}
+#main #body {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 0rem;
+  height: 85%;
+}
+#main #body #left-pane {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: stretch;
+  margin-left: 15px;
+  margin-top: -0.5rem;
+}
+#main #body #left-pane #left-pane-items {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 5px 2px #d4d3d3;
+  width: 95%;
+  margin-top: 1rem;
+  border-radius: 15px;
+  gap: 2rem;
+  height: 10rem;
+  padding-top: 1rem;
+}
+#main #body #left-pane #left-item-one {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  gap: 10px;
+  margin-left: 5px;
+  height: 10%;
+}
+#main #body #left-pane #left-item-two {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  gap: 10px;
+  margin-left: 5px;
+  height: 10%;
+}
+#main #body #left-pane #left-item-three {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  justify-content: flex-start;
+  gap: 10px;
+  height: 10%;
+  margin-left: 5px;
+}
+#main #body #middle-pane {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden scroll;
+  margin: 0.5rem 20px 0px 5px;
+  height: 95%;
+  padding: 10px 0px 20px 0px;
+  border-radius: 6px;
+  box-shadow: 0px 0px 5px 2px #d4d3d3;
+}
+#main #body #middle-pane::-webkit-scrollbar {
+  width: 0.4rem;
+  background-color: white;
+  opacity: 50%;
+  border-radius: 6px;
+}
+#main #body #middle-pane::-webkit-scrollbar-track {
+  border-radius: 6px;
+}
+#main #body #middle-pane::-webkit-scrollbar-thumb {
+  background-color: black;
+  outline: 1rem;
+  border-radius: 6px;
+}
+#main #body #middle-pane #card-border {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+}
+#main #body #right-pane {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 2rem;
+  align-items: center;
+}
+#main #body #right-pane #write {
+  height: 8rem;
+  width: 90%;
+  font-family: "Roboto";
+  font-size: 18px;
+  margin-right: 10px;
+  border-radius: 5px;
+  resize: none;
+}
+#main #body #right-pane #write:focus {
+  font-weight: bold;
+}
+#main #body #right-pane #menu-items {
+  display: flex;
+  flex-direction: column;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 15px;
+  box-shadow: 0px 0px 5px 2px #d4d3d3;
+  margin: 3% 5% 0px 0px;
+  gap: 10px;
+  padding: 10px;
+}
+#main #body #right-pane .menu-buttons {
+  height: 2rem;
+  width: 13.5rem;
+  border-radius: 15px;
+  font-family: "Roboto";
+  font-size: 18px;
+  border-color: black;
+  background-color: black;
+  color: white;
+}
+#main #body #right-pane .menu-buttons:hover {
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  border-color: black;
+  font-weight: bold;
+}
+#main #body #right-pane #icon-buttons {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 5px;
+  width: 96%;
+  justify-content: space-between;
+  outline: 1px solid black;
+  border-radius: 3px;
+  margin-right: 0.7rem;
+}
+#main #body #right-pane .send {
+  width: 50%;
+  font-family: "Roboto Condensed";
+  left: 25%;
+  margin: 6px 0px 10px 0px;
+  font-size: large;
+  border-color: white;
+  color: white;
+  background-color: black;
+  border-radius: 6px;
+  padding: 6px;
+  border-color: black;
+  width: 5rem;
+  height: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 5px;
+}
+#main #body #right-pane .send:hover {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  border-color: black;
+}
+#main #body #right-pane .send:hover {
+  cursor: pointer;
+}
+#main #body #right-pane .send:focus {
+  outline: none;
+}
+#main #body #right-pane .icon-buttons {
+  border: none;
+  background-color: inherit;
+  width: 1.2rem;
+  margin-right: 7px;
+}
+#main #body #right-pane .icon-buttons:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+#main #body #right-pane .icon-buttons:focus {
+  outline: none;
+}
+#main #body #right-pane #icon-group {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+}
+
+h4 {
+  text-decoration: none;
+  font-size: x-large;
+  font-family: "Roboto condensed";
+  font-weight: 500;
+}
+
+#upload-quil {
+  background-color: white;
+  width: 15rem;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0px 0px 5px 1px silver;
+  padding: 15px 10px 0 10px;
+  border-radius: 6px;
+}/*# sourceMappingURL=homepage.css.map */

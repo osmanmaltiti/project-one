@@ -1,0 +1,49 @@
+//SignPage
+@mixin signInput {
+    margin: 5px 0px 5px 0px; border-radius: 4px 4px 0px 0px;
+    height: 2.5rem; width: 23rem; border-right: none;
+    border-top: none; border-left: none; font-size: 18px;
+    background-color: rgb(250, 248, 248);
+    border-color: black; font-family: 'Roboto';
+
+    &:focus{
+      outline: none; background-color: rgb(211, 209, 209);
+      color: black; font-weight: bolder;
+  }
+}
+@mixin signButton{
+    width: 50%; font-family: 'Roboto Condensed';
+    left: 25%; margin: 6px 0px 10px 0px; font-size: large; 
+    border-color: white; color: white; background-color: black;
+    border-radius: 6px; padding: 6px; border-color: black;
+
+    &:hover{
+      background-color: white; color: black; 
+      cursor: pointer; border-color: black;
+    }
+}
+
+//Homepage
+@mixin  middlePane {
+  width: 60%; display: flex; flex-direction: column;
+      align-items: center; overflow: hidden scroll;
+      margin: 0.5rem 20px 0px 5px; height: 95%; 
+      padding: 10px 0px 20px 0px; border-radius: 6px;
+      box-shadow: 0px 0px 5px 2px rgb(212, 211, 211);
+      &::-webkit-scrollbar{
+        width: 0.4rem; background-color: white;
+        opacity: 50%; border-radius: 6px;
+      }
+      &::-webkit-scrollbar-track {
+        border-radius: 6px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: black;
+        outline: 1rem; border-radius: 6px;
+      }
+      #card-border{
+        height: fit-content; width: 90%;
+        display: flex; flex-direction: column; 
+        justify-content:stretch;
+      }
+}

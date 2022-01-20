@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import PrivateRoute from './component/services/privateRoute';
-import { Sign } from './component/sign/signpage';
-import { Home } from './component/homepage/homepage';
+import { Sign } from './component/Signpage';
+import { Home } from './component/Homepage';
 import './App.css';
-import { Profile } from './component/profile/profile';
+import { Profile } from './component/Profile';
 
 
 export const App = () => {

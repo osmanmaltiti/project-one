@@ -1,5 +1,5 @@
 import React from "react";
-import './card.css';
+import '../styles/Card/Card.css';
 import {IoMdThumbsUp, IoMdThumbsDown, IoMdMore} from 'react-icons/io';
 import Popup from "reactjs-popup";
 

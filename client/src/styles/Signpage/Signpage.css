@@ -1,0 +1,121 @@
+#main-sign {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#main-sign #content {
+  margin-top: 10%;
+  width: 60%;
+  position: relative;
+  bottom: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+#main-sign #content h3 {
+  font-family: "Roboto Condensed";
+  font-size: 28px;
+}
+#main-sign #content #signIn-form {
+  display: flex;
+  flex-direction: column;
+}
+#main-sign #content #signIn-form .sign-input {
+  margin: 5px 0px 5px 0px;
+  border-radius: 4px 4px 0px 0px;
+  height: 2.5rem;
+  width: 23rem;
+  border-right: none;
+  border-top: none;
+  border-left: none;
+  font-size: 18px;
+  background-color: #faf8f8;
+  border-color: black;
+  font-family: "Roboto";
+}
+#main-sign #content #signIn-form .sign-input:focus {
+  outline: none;
+  background-color: #d3d1d1;
+  color: black;
+  font-weight: bolder;
+}
+#main-sign #content #signIn-form .sign-button {
+  width: 50%;
+  position: relative;
+  font-family: "Roboto Condensed";
+  left: 25%;
+  margin: 6px 0px 10px 0px;
+  font-size: large;
+  border-color: white;
+  color: white;
+  background-color: black;
+  border-radius: 6px;
+  padding: 6px;
+  border-color: black;
+}
+#main-sign #content #signIn-form .sign-button:hover {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  border-color: black;
+}
+#main-sign #content .sign-google {
+  margin: 0px 0px 0px 5px;
+  font-family: "Roboto Condensed";
+  font-size: large;
+  background-color: #37a8d4;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  padding: 5px;
+}
+#main-sign #content .sign-google:hover {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  border-color: black;
+  border: 2px solid black;
+  padding: 5px;
+}
+#main-sign #content #signUp-form {
+  display: flex;
+  flex-direction: column;
+}
+#main-sign #content #signUp-form .sign-input {
+  margin: 5px 0px 5px 0px;
+  border-radius: 4px 4px 0px 0px;
+  height: 2.5rem;
+  width: 23rem;
+  border-right: none;
+  border-top: none;
+  border-left: none;
+  font-size: 18px;
+  background-color: #faf8f8;
+  border-color: black;
+  font-family: "Roboto";
+}
+#main-sign #content #signUp-form .sign-input:focus {
+  outline: none;
+  background-color: #d3d1d1;
+  color: black;
+  font-weight: bolder;
+}
+#main-sign #content #signUp-form .sign-button {
+  width: 50%;
+  position: relative;
+  font-family: "Roboto Condensed";
+  left: 25%;
+  margin: 6px 0px 10px 0px;
+  font-size: large;
+  border-color: white;
+  color: white;
+  background-color: black;
+  border-radius: 6px;
+  padding: 6px;
+  border-color: black;
+}
+#main-sign #content #signUp-form .sign-button:hover {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  border-color: black;
+}/*# sourceMappingURL=Signpage.css.map */
