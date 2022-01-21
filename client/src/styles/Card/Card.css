@@ -1,5 +1,5 @@
 #main-card {
-  background-color: #eeecec;
+  background-color: rgba(238, 236, 236, 0.329);
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -80,7 +80,7 @@
   height: 1.5rem;
 }
 #main-card #bottom #card-extras {
-  width: 36%;
+  width: 45%;
   background-color: #fffdfd;
   margin-right: 10px;
   border-radius: 6px;
@@ -95,11 +95,14 @@
   overflow: hidden;
   justify-content: space-between;
 }
-#main-card #bottom #card-extras-buttons {
+#main-card #bottom #card-extras #card-extras-buttons {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
+}
+#main-card #bottom #card-extras span {
+  margin-right: 10px;
 }
 #main-card #bottom [type=radio] {
   opacity: 0%;

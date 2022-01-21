@@ -1,4 +1,4 @@
-import { auth } from '../services/firebase';
+import { auth } from "../../services/firebase";
 import { logout } from '../../redux/features/user-profile-slice';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
@@ -26,6 +26,8 @@ const useProfile = () => {
                 profileImg = {item.profileUrl}
                 like = {item.likes.length}
                 unlike = {item.unlikes.length}
+                time = {`${item.date?.hour}:${item.date?.minute}`}
+                date = {`${item.date?.day}-${item.date?.month}-${item.date?.year}`}
                 likeMe = { async() => {
                     await axios.patch(`/user/quil/like/${item._id}`, {
                     uid: auth.currentUser.uid

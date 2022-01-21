@@ -36,7 +36,9 @@ export const Card = (props) => {
                         <IoMdThumbsDown className="icons icons-unlike" size='25px' style={ {verticalAlign: 'top'} }/>
                     </label>
                         <p>{props.unlike}</p></div>
-                    12/1/2022
+                    <span>
+                        {props.date} <strong>at</strong> {props.time}
+                    </span>
                 </div>
             </div>
             <hr style={{color:"black", width:'93%'}} />

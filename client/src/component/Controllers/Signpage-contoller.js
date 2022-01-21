@@ -1,10 +1,10 @@
-import { auth, storage } from "../services/firebase";
+import { auth, storage } from "../../services/firebase";
 import { ref, uploadBytesResumable } from "firebase/storage";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import useInput from "./custom-hooks/input-hook";
 import axios from 'axios';
-import file from '../services/offset.txt';
+import file from "../../services/offset.txt";
 
 const useSignpage = () => {
   const navigate = useNavigate();
@@ -50,8 +50,16 @@ const useSignpage = () => {
         });
     }
     catch(err){ console.log(err); }
-}
+  }
+  const createdAt = () => {
+    const dates = new Date()
+    let day = dates.getDate();
+    let month = dates.getMonth() + 1;
+    let year = dates.getFullYear();
+   return `${day}-${month}-${year}`;
+  }
 
-  return [handleLogIn, handleSignUp]
+  return [handleLogIn, handleSignUp, createdAt]
 }
 export default useSignpage;
+

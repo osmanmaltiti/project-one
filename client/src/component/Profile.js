@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { totalLikes, userprofile } from "../redux/features/user-profile-slice";
-import { auth, storage } from '../component/services/firebase';
+import { auth, storage } from "../services/firebase";
 import Popup from 'reactjs-popup';
 import axios from 'axios';
 import logo from '../images/Logo.png'

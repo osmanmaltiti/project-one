@@ -2,7 +2,7 @@ import { signOut } from "firebase/auth";
 import { logout } from "../../redux/features/user-profile-slice"
 import { Card } from "../Card";
 import axios from "axios";
-import { auth } from "../services/firebase";
+import { auth } from "../../services/firebase";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -11,13 +11,24 @@ const useHome = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const createdAt = () => {
+    const dates = new Date()
+    let day = dates.getDate();
+    let month = dates.getMonth() + 1;
+    let year = dates.getFullYear();
+    let hour = dates.getHours();
+    let minute = dates.getMinutes();
+   return {day, month, year, hour, minute};
+  }
+
   const handleQuil = async(write, reset, e) => {
     e.preventDefault();
     reset();
     try{
      await axios.patch('/user', {
          uid: auth.currentUser.uid, 
-         quils: write
+         quils: write,
+         createdAt: createdAt()
         });
     }
     catch(err){ console.log(err); }
@@ -34,8 +45,10 @@ const useHome = () => {
       write = {item.quil}
       name = {item.displayname}
       profileImg = {item.profileUrl}
+      time = {`${item.date?.hour}:${item.date?.minute}`}
+      date = {`${item.date?.day}-${item.date?.month}-${item.date?.year}`}
       delete = {async() => {
-          axios.delete(`/user/quil/${item._id}`)
+          axios.delete(`/user/quil/${auth.currentUser.uid}/${item._id}`)
       }}
       like = {item.likes.length}
       unlike = {item.unlikes.length}
@@ -49,6 +62,7 @@ const useHome = () => {
           });} }
       />)
   }
-  return [ handleQuil, logOut, quilMap]
+  
+  return [ handleQuil, logOut, quilMap,createdAt ]
 }
 export default useHome;

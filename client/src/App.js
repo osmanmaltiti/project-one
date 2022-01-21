@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import PrivateRoute from './component/services/privateRoute';
+import PrivateRoute from './services/privateRoute';
 import { Sign } from './component/Signpage';
 import { Home } from './component/Homepage';
 import './App.css';

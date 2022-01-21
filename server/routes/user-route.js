@@ -10,6 +10,7 @@ const quilSchema = new mongoose.Schema({
   likes: [String],
   unlikes: [String],
   quil: String,
+  date: Object
 });
 const userSchema = new mongoose.Schema({
   uid: {type: String, required: true},
@@ -17,7 +18,10 @@ const userSchema = new mongoose.Schema({
   displayname: String,
   email: String,
   number: Number,
-  profileUrl: String
+  profileUrl: String,
+  createdAt: String,
+  followers: [String],
+  following: [String]
 });
 
 const User = mongoose.model('User', userSchema);
@@ -27,28 +31,32 @@ const Quil = mongoose.model('Quil', quilSchema);
 //user profile
 router.post('/', async(req, res) => {
   const { uid, fullname, displayname, 
-    email, number, profileUrl } = req.body;
+    email, number, profileUrl, createdAt } = req.body;
+   
     
     const newUser = new User({
       uid, fullname, displayname, 
-      profileUrl, email, number
+      profileUrl, email, number,
+      createdAt
     });
     await newUser.save();
 });
 
 router.patch('/', async(req, res) => {
-  const { uid, quils} = req.body;
+  const { uid, quils, createdAt} = req.body;
   User.find({uid: uid}, (err, results) => {
     const [userData] = results;
     const {displayname, profileUrl} = userData;
     if(err){ console.log(err) }
     else{
       const newQuil = new Quil({
-        uid, displayname, profileUrl, quil: quils
+        uid, displayname, profileUrl,
+        quil: quils, date: createdAt
       });
       newQuil.save();
       }
   });
+  res.status(201).send("Quil updated")
 });
 
 router.patch('/:uid', (req, res) => {
@@ -142,10 +150,10 @@ router.patch('/quil/unlike/:quilID', async(req, res) => {
   }
 });
 
-router.delete('/quil/:quilID', async(req, res) => {
-  const {quilID} = req.params;
+router.delete('/quil/:uid/:quilID', async(req, res) => {
+  const {quilID, uid} = req.params;
   try {
-    Quil.deleteOne({_id: quilID}, (err) => err && console.log(err));
+    Quil.deleteOne({_id: quilID, uid: uid}, (err) => err && console.log("Action not permitted"));
     res.status(201).send('quil deleted')
   } catch (error) { 
     res.status(400).send(err);

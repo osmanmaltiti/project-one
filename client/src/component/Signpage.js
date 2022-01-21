@@ -12,7 +12,7 @@ export const Sign = () => {
   const [number] = useInput('');
   const [password_reg] = useInput('');
   const [con_pass] = useInput('');
-  const [handleLogIn, handleSignUp] = useSignpage();
+  const [handleLogIn, handleSignUp, createdAt] = useSignpage();
 
   const loggings = {username: username.value, password: password.value};
   const signups = {
@@ -21,6 +21,7 @@ export const Sign = () => {
                    email: email.value,
                    number:number.value,
                    password_reg: password_reg.value,
+                   createdAt: createdAt()
                   }
 
 return(

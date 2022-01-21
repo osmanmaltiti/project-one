@@ -41,7 +41,6 @@
 }
 #main-sign #content #signIn-form .sign-button {
   width: 50%;
-  position: relative;
   font-family: "Roboto Condensed";
   left: 25%;
   margin: 6px 0px 10px 0px;
@@ -101,7 +100,6 @@
 }
 #main-sign #content #signUp-form .sign-button {
   width: 50%;
-  position: relative;
   font-family: "Roboto Condensed";
   left: 25%;
   margin: 6px 0px 10px 0px;

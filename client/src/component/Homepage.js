@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth, storage } from "../services/firebase";
 import { useDispatch, useSelector } from "react-redux";
-import { totalLikes, userprofile } from "../redux/features/user-profile-slice";
-import { IoPerson, IoStatsChart, IoMic, 
-         IoImage, IoVideocam, IoSend } from "react-icons/io5";
-import { IoMdHappy, IoMdSad } from "react-icons/io";
-import axios from "axios";
+import { auth, storage } from "../services/firebase";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { totalLikes, totalQuils, userprofile } from "../redux/features/user-profile-slice";
 import useInput from "../component/Controllers/custom-hooks/input-hook";
+import useHome from "./Controllers/Homepage-controller";
+import axios from "axios";
+import Popup from "reactjs-popup";
+import { IoPerson, IoStatsChart, IoMic, 
+         IoImage, IoVideocam, IoSend, IoPencil } from "react-icons/io5";
+import { IoMdHappy, IoMdSad } from "react-icons/io";
+import { FaFeatherAlt } from "react-icons/fa"
 import logo from "../images/Logo.png"
 import '../styles/Homepage/homepage.css';
-import Popup from "reactjs-popup";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import useHome from "./Controllers/Homepage-controller";
 
 
 export const Home = () => {
@@ -23,9 +24,11 @@ const user_card = useSelector((state) => state.user.data);
 const { user, quil } = user_card;
 const interact = useSelector((state) => state.user.interactions);
 const { likes, unlikes, popularity } = interact;
-const [pictureFile, setPictureFile] = useState();
-const [progress, setProgress] = useState(0);
-const [handleQuil, logOut, quilMap] = useHome();
+const totalQuil = useSelector((state) => state.user.totalQuils);
+const [ pictureFile, setPictureFile ] = useState();
+const [ progress, setProgress ] = useState(0);
+const [ handleQuil, logOut, 
+        quilMap, createdAt ] = useHome();
 
 const handlePictureUpload = (e) => {
     e.preventDefault();
@@ -42,7 +45,8 @@ useEffect(() => {
         (async() => {
             const allLikes = await axios.get(`/user/quil/likesUnlikes/${auth.currentUser.uid}`);
             dispatch(totalLikes(allLikes.data))
-        })()
+        })();
+        dispatch(totalQuils(quil?.filter(item => item.uid === auth.currentUser.uid).length));
     }, 3000);
     return () => {
         clearInterval(refresh);
@@ -60,7 +64,8 @@ const pictureUpload = (file) => {
         getDownloadURL(upload.snapshot.ref).then(async(url) => {
             await axios.patch('/user', {
                 uid: auth.currentUser.uid, 
-                quils: url
+                quils: url,
+                createdAt: createdAt()
                });
         })
     })
@@ -70,7 +75,7 @@ return(
 <div id="main">
     <div id="header">
         <img id='header-logo' alt={""} src={logo} height="70px"/>
-        <img id="user-avi" alt={""} src={user?.profileUrl}/> 
+         
         <nav id="nav-bar">
             <button className="signOut" onClick={() => logOut()} >Sign Out</button>
         </nav>
@@ -78,18 +83,24 @@ return(
     <div id="body">
         <div id="left-pane">
             <div id="left-pane-items">
+                <img id="user-avi" alt={""} src={user?.profileUrl}/>
                 <div id='left-item-one'>
                     <IoPerson style={{verticalAlign: 'middle', color: 'black'}} size='30px'/>
                     <h4>{user?.displayname}</h4>
                 </div>
                 <div id='left-item-two'>
-                    <IoMdHappy style={{verticalAlign: 'middle', color: 'black'}} size='30px'/>
-                    <h4>{likes}</h4>
-                    <IoMdSad style={{verticalAlign: 'middle', color: 'black'}} size='30px'/>
-                    <h4>{unlikes}</h4></div>
+                    <span><IoMdHappy style={{verticalAlign: 'middle', color: 'black'}} size='30px'/>
+                    <h4>{likes}</h4></span>
+                    <span><IoMdSad style={{verticalAlign: 'middle', color: 'black'}} size='30px'/>
+                    <h4>{unlikes}</h4></span>
+                </div>
                 <div id='left-item-three'>
+                    <span>
                     <IoStatsChart style={{verticalAlign: 'middle', color: 'black'}} size='30px'/>
-                    <h4>{popularity !== undefined ? `${popularity}%` : '...%'}</h4>
+                    <h4>{popularity !== undefined ? `${popularity}%` : '...%'}</h4></span>
+                    <span>
+                    <FaFeatherAlt style={{verticalAlign: 'middle'}} size='25px'/>
+                    <h4>{totalQuil}</h4></span>
                 </div>
             </div>
         </div>
