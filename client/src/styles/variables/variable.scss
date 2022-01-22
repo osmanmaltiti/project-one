@@ -12,10 +12,11 @@
   }
 }
 @mixin signButton{
-    width: 50%; font-family: 'Roboto Condensed';
-    left: 25%; margin: 6px 0px 10px 0px; font-size: large; 
+    width: 50%; font-family: 'Roboto Condensed'; margin: 6px 0px 10px 0px; font-size: 18px; 
     border-color: white; color: white; background-color: black;
-    border-radius: 6px; padding: 6px; border-color: black;
+    border-radius: 6px;  border-color: black;
+    display: flex; flex-direction: row;
+    justify-content: center; align-items: center;
 
     &:hover{
       background-color: white; color: black; 

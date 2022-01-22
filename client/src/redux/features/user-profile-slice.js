@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const init = {}
 const userProfileSlice = createSlice({
   name: 'userProfile',
-  initialState: { data: init, interactions: init, totalQuils: 0 },
+  initialState: { data: init, interactions: init, totalQuils: 0, search: []},
   reducers: {
     userprofile: (state, action) => {
       const { payload } = action;
@@ -17,6 +17,10 @@ const userProfileSlice = createSlice({
       const { payload } = action;
       state.totalQuils = payload;
     },
+    search: (state, action) => {
+      const { payload } = action;
+      state.search = payload;
+    },
     logout: (state) => {
       state.data = init;
       state.interactions = init
@@ -27,7 +31,8 @@ const userProfileSlice = createSlice({
 export const { 
                userprofile, 
                totalLikes,
-               totalQuils, 
+               totalQuils,
+               search,
                logout 
                           } = userProfileSlice.actions;
 export default userProfileSlice.reducer;

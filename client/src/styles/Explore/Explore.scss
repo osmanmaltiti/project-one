@@ -1,0 +1,74 @@
+@import '../variables/variable.scss';
+.main-explore{
+  width: 100%; height: 100%; gap: 2rem;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  position: fixed;
+  
+  span{
+    border: 2px solid black; border-radius: 18px;
+    overflow: hidden;
+    input{
+      height: 2rem; width: 30rem; border: none;
+      margin-left: 1rem; font-size: 18px;
+      &:focus{
+        outline: none;
+      }
+    }
+    button{
+      height: fit-content; border: none;
+      background: none; 
+      margin-bottom: 5px;
+      &:hover{
+        cursor: pointer;
+      }
+    }
+  }
+  .queries{
+    height: 80%; width: 25rem; border-radius: 5px;
+    box-shadow: 1px 1px 10px 2px rgb(212, 212, 212);
+    display: flex; flex-direction: column; align-items: center; padding-top: 0.5rem;
+    overflow: hidden scroll;
+    &::-webkit-scrollbar{
+      width: 0.4rem; background-color: white;
+      opacity: 50%; border-radius: 6px;
+    }
+    &::-webkit-scrollbar-track {
+      border-radius: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: black;
+      outline: 1rem; border-radius: 6px;
+    }
+  }
+
+}
+
+.main-query-card{
+  width: 90%;
+  display: flex; flex-direction: row;
+  align-items: center; overflow: hidden;
+  justify-content: space-between;
+  .avi-names{
+    display: flex; flex-direction: row;
+    gap: 10px; justify-content: center;
+    align-items: center;
+    .user-avi{
+      width: 4rem; height: 4rem;
+      border-radius: 50%;
+    }
+    .names{
+      height: 6rem; border: none;
+      display: flex; flex-direction: column;
+      justify-content: center; margin-top: -1.2rem;
+      p{
+        margin-top: -1.5rem;
+        font-family: 'roboto'
+      }
+    }
+  }
+  button{
+    @include signButton;
+    height: 2rem; width: 5rem;
+  }
+}

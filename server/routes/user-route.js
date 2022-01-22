@@ -71,8 +71,24 @@ router.patch('/:uid', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-  User.find((err, results) => {
-    res.json(results)
+  User.find((err, data) => {
+    res.status(201).json(data)
+  })
+})
+
+
+router.get('/search', (req, res) => {
+  User.find((err, data) => {
+    const array = []
+    data.forEach(item => array
+                              .push({
+                                uid: item.uid, 
+                                fullname: item.fullname, 
+                                displayname: item.displayname,
+                                profileUrl: item.profileUrl
+                              }));
+    res.status(201).json(array)
+
   })
 });
 
@@ -177,4 +193,27 @@ router.get(`/quil/likesUnlikes/:uid`, async(req, res) => {
   })
 })
 
+//follow Unfollow
+router.patch('/follow/:uid', (req, res) => {
+  const {uid} = req.params;
+  const {followingId} = req.body;
+  User.find({uid: followingId}, async(err, result) => {
+    if(err) {console.log(err)}
+    else{
+      const [data] = result;
+      let followers = [...data.followers, uid];
+      await User.updateOne({uid: followingId}, {followers: [...new Set(followers)]});
+    
+    User.find({uid}, async(err, result) => {
+      if(err) {console.log(err)}
+      else{
+        const [data] = result;
+        let following = [...data.following, followingId]
+        await User.updateOne({uid}, {following: [...new Set(following)]});
+      }
+    });
+    res.status(201).send("Following")
+    }
+  })
+})
 module.exports = router;

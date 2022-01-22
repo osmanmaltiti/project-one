@@ -114,8 +114,8 @@
   align-items: center;
   overflow: hidden scroll;
   margin: 0.5rem 20px 0px 5px;
-  height: 95%;
-  padding: 10px 0px 20px 0px;
+  height: 100%;
+  padding: 10px 0px 0 0px;
   border-radius: 6px;
   box-shadow: 0px 0px 5px 2px #d4d3d3;
 }
@@ -134,9 +134,7 @@
   border-radius: 6px;
 }
 #main-user-profile #lower-half #middle-pane #card-border {
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
+  height: 100%;
   width: 90%;
   display: flex;
   flex-direction: column;
