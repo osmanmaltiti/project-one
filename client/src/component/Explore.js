@@ -1,45 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { IoSearch } from 'react-icons/io5';
-import { search } from '../redux/features/user-profile-slice';
 import { auth } from '../services/firebase';
 import '../styles/Explore/Explore.css';
 
 export const Explore = () => {
-  const dispatch = useDispatch();
   const [queries, setQueries] = useState([]);
   const [state, setState] = useState('');
-  const searchQueries = useSelector(state => state.user.search);
-  const [followState, setFollow] = useState('Follow');
+  const [follow, setFollow] = useState(false);
 
-              
   useEffect(() => {
-    (async() => {
-      const res = await axios.get('/user/search');
-      dispatch(search(res.data))
-    })()
+   
+      //  (async() => {
+      //    const res = await axios.get(`/user/search/${auth.currentUser.uid}`);
+      //     setData(res.data)
+          
+      //   })()
   }, [])
   
-  const handleQueries = (e) => {
+
+  const handleQueries = async(e) => {
     e.preventDefault();
     setState(e.target.value);
-    setQueries(searchQueries.filter(item => 
-                item.uid !== auth.currentUser.uid && (
-                item.fullname.toLowerCase().includes(
-                      e.target.value) || 
-                item.displayname.toLowerCase().includes(
-                      e.target.value)
-                ) 
-              ));
+    try {
+      const res = await axios.get(`/user/search/${auth.currentUser.uid}/${e.target.value}`);
+      setQueries(res.data);
+    } 
+    catch (error) {
+      console.log(`Message (Not necessarily an error): ${error.message}`)
+    }
   }
+  
 
-  const handlefollow = async(id) => {
-    const {followingId} = id;
-    const follow = await axios.patch(`/user/follow/${auth.currentUser.uid}`,
-                  {followingId});
-    setFollow(follow.data)
+  const handleFollow = async(userId, followers) => {
+    let data = { userId, followers }
+    const res = await 
+                  axios.patch(`/user/follow/${auth.currentUser.uid}`, {data})
   }
+  
   return <div className='main-explore'>
     <span>
       <input type='text' onChange={handleQueries}/>
@@ -50,8 +48,18 @@ export const Explore = () => {
                                     name={item.fullname}
                                     dispName={item.displayname}
                                     userAvi = {item.profileUrl}
-                                    follow = {()=> handlefollow({followingId: item.uid})}
-                                    followState = {followState}/>)}
+                                    follow = {
+                                      () => {
+                                        handleFollow(item.uid, item.followers)
+                                      }
+                                    }
+                                    followState = {
+                                      (() => {
+                                        let stat = item.followers?.find(i => i.uid === auth.currentUser.uid);
+                                        return stat ? stat.status : 'Follow'
+                                      })()
+                                    }/>)
+      }
     </div>
   </div>;
 };
