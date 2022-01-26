@@ -1,42 +1,41 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { IoSearch } from 'react-icons/io5';
+import { search, otherUser } from '../redux/features/user-profile-slice';
 import { auth } from '../services/firebase';
+import { useNavigate } from 'react-router-dom';
 import '../styles/Explore/Explore.css';
 
 export const Explore = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [queries, setQueries] = useState([]);
   const [state, setState] = useState('');
-  const [follow, setFollow] = useState(false);
+  const searchQueries = useSelector(state => state.user.search);
 
+              
   useEffect(() => {
-   
-      //  (async() => {
-      //    const res = await axios.get(`/user/search/${auth.currentUser.uid}`);
-      //     setData(res.data)
-          
-      //   })()
+    (async() => {
+      const res = await axios.get('/user/search');
+      dispatch(search(res.data))
+    })()
   }, [])
   
 
-  const handleQueries = async(e) => {
+  const handleQueries = (e) => {
     e.preventDefault();
     setState(e.target.value);
-    try {
-      const res = await axios.get(`/user/search/${auth.currentUser.uid}/${e.target.value}`);
-      setQueries(res.data);
-    } 
-    catch (error) {
-      console.log(`Message (Not necessarily an error): ${error.message}`)
-    }
+    setQueries(searchQueries.filter(item => 
+                item.uid !== auth.currentUser.uid && (
+                item.fullname.toLowerCase().includes(
+                      e.target.value) || 
+                item.displayname.toLowerCase().includes(
+                      e.target.value)
+                ) 
+              ));
   }
   
-
-  const handleFollow = async(userId, followers) => {
-    let data = { userId, followers }
-    const res = await 
-                  axios.patch(`/user/follow/${auth.currentUser.uid}`, {data})
-  }
   
   return <div className='main-explore'>
     <span>
@@ -48,24 +47,18 @@ export const Explore = () => {
                                     name={item.fullname}
                                     dispName={item.displayname}
                                     userAvi = {item.profileUrl}
-                                    follow = {
-                                      () => {
-                                        handleFollow(item.uid, item.followers)
-                                      }
-                                    }
-                                    followState = {
-                                      (() => {
-                                        let stat = item.followers?.find(i => i.uid === auth.currentUser.uid);
-                                        return stat ? stat.status : 'Follow'
-                                      })()
-                                    }/>)
+                                    action = {() => {
+                                      dispatch(otherUser(item.uid));
+                                      navigate('/home/explore/followingprofile')
+                                    }}
+                                    />)
       }
     </div>
   </div>;
 };
 
 const QueryCard = (props) => {
-  return <div className='main-query-card'>
+  return <button className='main-query-card' onClick={props.action}>
       <div className='avi-names'>
         <img className='user-avi' src={props.userAvi} alt=''/>
         <div className='names'>
@@ -73,6 +66,5 @@ const QueryCard = (props) => {
           <p>{props.dispName}</p>
         </div>
       </div>
-      <button onClick={props.follow}>{props.followState}</button>
-  </div>
+  </button>
 }

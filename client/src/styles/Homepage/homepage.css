@@ -25,15 +25,17 @@
 #main #header .signOut {
   width: 50%;
   font-family: "Roboto Condensed";
-  left: 25%;
   margin: 6px 0px 10px 0px;
-  font-size: large;
+  font-size: 18px;
   border-color: white;
   color: white;
   background-color: black;
   border-radius: 6px;
-  padding: 6px;
   border-color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   width: 5rem;
   background: none;
   color: black;
@@ -224,15 +226,17 @@
 #main #body #right-pane .send {
   width: 50%;
   font-family: "Roboto Condensed";
-  left: 25%;
   margin: 6px 0px 10px 0px;
-  font-size: large;
+  font-size: 18px;
   border-color: white;
   color: white;
   background-color: black;
   border-radius: 6px;
-  padding: 6px;
   border-color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   width: 5rem;
   height: 2rem;
   display: flex;

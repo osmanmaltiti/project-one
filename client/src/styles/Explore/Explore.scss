@@ -45,7 +45,8 @@
 }
 
 .main-query-card{
-  width: 90%;
+  width: 95%; background: none;
+  border: none;
   display: flex; flex-direction: row;
   align-items: center; overflow: hidden;
   justify-content: space-between;
@@ -60,15 +61,14 @@
     .names{
       height: 6rem; border: none;
       display: flex; flex-direction: column;
-      justify-content: center; margin-top: -1.2rem;
+      align-items: flex-start; margin-top: -1.3rem;
       p{
-        margin-top: -1.5rem;
+        margin-top: -1.78rem; font-size: 15px;
         font-family: 'roboto'
       }
     }
   }
-  button{
-    @include signButton;
-    height: 2rem; width: 5rem;
+  &:hover{
+    cursor: pointer; background-color: rgba(221, 214, 214, 0.598); border-radius: 6px;
   }
 }

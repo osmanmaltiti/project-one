@@ -80,15 +80,23 @@ export const Profile = () => {
             </div>
           </Popup>
           <div id='credentials'>
-          <h2 className='credentials-item'>Name: {user?.fullname}</h2>
-          <p className='credentials-item'>Display Name: @{user?.displayname}</p>
-          <p className='credentials-item'>Interactions: {likes + unlikes}</p>  
-          <p className='credentials-item'>Quil age: 7 days</p>
+          <p className='credentials-item'><strong>Name: </strong>{user?.fullname}</p>
+          <p className='credentials-item'><strong>Username: </strong>{user?.displayname}</p>
+          <p className='credentials-item'><strong>Interactions: </strong>{likes + unlikes}</p>  
+          <p className='credentials-item'><strong>Quil age: </strong>7 days</p>
+          </div>
+        </div>
+        <div>
+        <div id='stats'>
+          <p className='stats-item'><strong>Followers: </strong>{user?.followers?.length}</p>
+          <p className='stats-item'><strong>Following: </strong>{user?.following?.length}</p>
+          <p className='stats-item'><strong>Total Likes: </strong>{likes}</p>  
+          <p className='stats-item'><strong>Total Unlikes: </strong>{unlikes}</p>
           </div>
         </div>
       </div>
 
-      <hr width='80%'/>
+      <hr width='50%'/>
 
       <div id='lower-half'>
         <div id='middle-pane'>

@@ -20,8 +20,8 @@ const userSchema = new mongoose.Schema({
   number: Number,
   profileUrl: String,
   createdAt: String,
-  followers: [Object],
-  following: [Object]
+  followers: [String],
+  following: [String]
 });
 
 const User = mongoose.model('User', userSchema);
@@ -77,19 +77,28 @@ router.get('/', (req, res) => {
 })
 
 //Search
-router.get('/search/:uid/:query', (req, res) => {
-  const {uid, query} = req.params;
-  console.log(query)
+router.get('/search', (req, res) => {
   User.find((err, data) => {
-    if(err){ res.status(401).send(err) }
-    let queries = data.filter(item => 
-      item.uid != uid && 
-      (item.fullname.toLowerCase().includes(query) || 
-      item.displayname.toLowerCase().includes(query))
-      )
-    res.status(201).json(queries)
+    const array = []
+    data.forEach(item => array
+                          .push({
+                            uid: item.uid, 
+                            fullname: item.fullname, 
+                            displayname: item.displayname,
+                            profileUrl: item.profileUrl
+                          }));
+    res.status(201).json(array)
   })
 });
+
+//Search other users
+router.get('/userquery/:userId', (req, res) => {
+  const {userId} = req.params;
+  User.findOne({uid: userId}, (err, data) => {
+    if(err) res.status(404).send(err)
+    res.status(200).json(data);
+  });
+})
 
 router.get('/profile/:uid', async(req, res) => {
   const {uid} = req.params;
@@ -98,11 +107,13 @@ router.get('/profile/:uid', async(req, res) => {
     if(err){
       console.log(`Error message: ${err}`)}
       else{
-        const {displayname, profileUrl, fullname, quil} = userData;
+        const {displayname, profileUrl, fullname, quil, followers, following } = userData;
       res.json({
         displayname, 
         profileUrl,
         fullname,
+        followers,
+        following,
         quil
       })};
   });
@@ -196,61 +207,36 @@ router.get(`/quil/likesUnlikes/:uid`, async(req, res) => {
 router.patch('/follow/:uid', (req, res) => {
   const {uid} = req.params;
   const {data} = req.body;
-
   const {userId, followers} = data;
-  if(followers.some(item => item.uid === uid)){
+
+  if(followers?.includes(uid)){
     User.findOne({uid: userId}, async(err, data) => {
-      let newFollowers = data.followers.filter(item => item.uid !== uid);
-      await User.updateOne({uid: userId}, {followers: newFollowers});
-      res.status(201).send([])
+      if(err) res.status(404).send(err)
+      let newFollowers = data.followers?.filter(item => item !== uid);
+      const response = await User.updateOne({uid: userId}, {followers: newFollowers});
+      
+      User.findOne({uid}, async(err, userData) => {
+        if(err) res.status(404).send(err)
+        
+        let newFollowing = userData.following?.filter(item => item !== userId)
+        await User.updateOne({uid}, {following: newFollowing})
+      })
+      res.status(201).send("Unfollowed")
     })
   }
   else{
     User.findOne({uid: userId}, async(err, data) => {
-      let newFollowers = [...data.followers, {uid, status: 'following'}]
-      await User.updateOne({uid: userId}, {followers: newFollowers});
-      res.status(201).send('following')
+      let newFollowers = [...data.followers, uid]
+      await User.updateOne({uid: userId}, {followers: [...new Set(newFollowers)]});
+      
+      User.findOne({uid}, async(err, userData) => {
+        if(err) res.status(404).send(err)
+        let newFollowing = [...userData.following, userId]
+        await User.updateOne({uid}, {following: newFollowing})
+      })
+      res.status(201).send("Following")
     })
   }
-  
-
-  // User.find({uid: followingId}, async(err, result) => {
-  //   if(err) {console.log(err)}
-  //   else{
-  //     const [data] = result;
-  //     const newFollower = {
-  //       uid, status: 'following'
-  //     }
-  //     let followers = [...data.followers, newFollower];
-      
-  //     const followerArray = (array, key) => {
-  //       return [...new Map(array.map(item => [item[key], item])).values()]
-  //          }
-  //     const newFollowerUpdate = followerArray(followers, 'uid');
-      
-  //     await User.updateOne({uid: followingId}, {followers: newFollowerUpdate});
-    
-    
-  //   User.find({uid}, async(err, result) => {
-  //     if(err) {console.log(err)}
-  //     else{
-  //       const [data] = result;
-  //       const newFollowing = {
-  //         followingId, status: 'following'
-  //       }
-  //       let followings = [...data.following, newFollowing];
-        
-  //       const followingArray = (array, key) => {
-  //         return [...new Map(array.map(item => [item[key], item])).values()]
-  //            }
-  //       const newFollowingUpdate = followingArray(followings, 'followingId');
-        
-  //       await User.updateOne({uid}, {following: newFollowingUpdate});
-  //     }
-  //   });
-  //   res.status(201).send("Following")
-  //   }
-  // })
 });
 
 router.patch('/unfollow/:uid', (req, res) => {

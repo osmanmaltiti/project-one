@@ -113,7 +113,7 @@ return(
         <div id="right-pane">
             <div id='menu-items'>
                 <button className="menu-buttons" onClick={() => navigate('/home/profile')}>Profile</button>
-                <button className="menu-buttons" onClick={() => navigate('/home/explore')}>Explore </button>
+                <button className="menu-buttons" onClick={() => navigate('/home/explore')}>Search</button>
                 <button className="menu-buttons">Videos</button>
                 <button className="menu-buttons">Settings</button>
             </div>

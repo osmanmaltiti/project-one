@@ -1,0 +1,130 @@
+#main-user-profile {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  overflow: hidden;
+}
+#main-user-profile #upper-half-others {
+  height: 30%;
+  width: 35rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 6px;
+}
+#main-user-profile #upper-half-others #profile-card-others {
+  display: flex;
+  border-radius: 6px;
+  flex-direction: row;
+  gap: 5rem;
+  width: 40rem;
+  padding: 20px;
+  margin-top: 1rem;
+  box-shadow: 0px 0px 5px 2px #d4d3d3;
+  justify-content: space-between;
+}
+#main-user-profile #upper-half-others #profile-card-others #profile-avi {
+  width: 7.2rem;
+  height: 7.2rem;
+  background-size: cover;
+  border-radius: 50%;
+  background-position: center;
+  box-shadow: 0px 0px 5px 1px #a5a3a3;
+}
+#main-user-profile #upper-half-others #profile-card-others span {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+#main-user-profile #upper-half-others #profile-card-others #credentials-others {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+}
+#main-user-profile #upper-half-others #profile-card-others #credentials-others .credentials-item {
+  margin-top: -10px;
+  font-family: "Roboto";
+  font-size: 18px;
+}
+#main-user-profile #upper-half-others #profile-card-others #credentials-others p:first-child::before {
+  content: "Name: ";
+  font-weight: bold;
+}
+#main-user-profile #upper-half-others #profile-card-others #credentials-others p:nth-of-type(2)::before {
+  content: "Username: ";
+  font-weight: bold;
+}
+#main-user-profile #upper-half-others #profile-card-others #credentials-others p:nth-of-type(3)::before {
+  content: "Followers: ";
+  font-weight: bold;
+}
+#main-user-profile #upper-half-others #profile-card-others #credentials-others p:nth-of-type(4)::before {
+  content: "Following: ";
+  font-weight: bold;
+}
+#main-user-profile #upper-half-others #profile-card-others button {
+  border-color: transparent;
+  background-color: black;
+  color: white;
+  height: 3rem;
+  width: 6rem;
+  font-family: "roboto";
+  font-size: 16px;
+  border-radius: 5px;
+  align-self: center;
+  font-weight: bold;
+}
+#main-user-profile #upper-half-others #profile-card-others button:hover {
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  border-color: black;
+  font-weight: bold;
+}
+#main-user-profile #lower-half-others {
+  height: 75%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#main-user-profile #lower-half-others #middle-pane {
+  width: 50rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden scroll;
+  margin: 0.5rem 20px 0px 5px;
+  height: 100%;
+  padding: 10px 0px 0 0px;
+  border-radius: 6px;
+  box-shadow: 0px 0px 5px 2px #d4d3d3;
+  box-shadow: none;
+  width: 50rem;
+}
+#main-user-profile #lower-half-others #middle-pane::-webkit-scrollbar {
+  width: 0.4rem;
+  background-color: white;
+  opacity: 50%;
+  border-radius: 6px;
+}
+#main-user-profile #lower-half-others #middle-pane::-webkit-scrollbar-track {
+  border-radius: 6px;
+}
+#main-user-profile #lower-half-others #middle-pane::-webkit-scrollbar-thumb {
+  background-color: black;
+  outline: 1rem;
+  border-radius: 6px;
+}
+#main-user-profile #lower-half-others #middle-pane #card-border {
+  height: 100%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+}/*# sourceMappingURL=Following-Profile.css.map */
