@@ -1,5 +1,5 @@
 import { signOut } from "firebase/auth";
-import { logout } from "../../redux/features/user-profile-slice"
+import { logout, otherUser } from "../../redux/features/user-profile-slice"
 import { Card } from "../Card";
 import axios from "axios";
 import { auth } from "../../services/firebase";
@@ -60,9 +60,20 @@ const useHome = () => {
           await axios.patch(`/user/quil/unlike/${item._id}`, {
               uid: auth.currentUser.uid
           });} }
+      profile = {
+        () => {
+          if(item.uid === auth.currentUser.uid){
+            navigate('/home/profile')
+          }
+          else{
+            dispatch(otherUser(item.uid));
+            navigate('/home/explore/followingprofile');
+          }
+        }
+      }
       />)
   }
   
-  return [ handleQuil, logOut, quilMap,createdAt ]
+  return [ handleQuil, logOut, quilMap, createdAt ]
 }
 export default useHome;

@@ -12,7 +12,7 @@ import { IoPerson, IoStatsChart, IoMic,
          IoImage, IoVideocam, IoSend, IoPencil } from "react-icons/io5";
 import { IoMdHappy, IoMdSad } from "react-icons/io";
 import { FaFeatherAlt } from "react-icons/fa"
-import logo from "../images/Logo.png"
+import logo from "../images/newLogo.png"
 import '../styles/Homepage/homepage.css';
 
 
@@ -26,14 +26,14 @@ const interact = useSelector((state) => state.user.interactions);
 const { likes, unlikes, popularity } = interact;
 const totalQuil = useSelector((state) => state.user.totalQuils);
 const [ pictureFile, setPictureFile ] = useState();
+const [ videoFile, setVideoFile ] = useState();
 const [ progress, setProgress ] = useState(0);
+const [ videoProgress, setVideoProgress ] = useState(0);
+const [ pictureCaption, setPictureCaption] = useState('');
+const [ videoCaption, setVideoCaption] = useState('');
 const [ handleQuil, logOut, 
         quilMap, createdAt ] = useHome();
 
-const handlePictureUpload = (e) => {
-    e.preventDefault();
-    pictureUpload(pictureFile)
-}
 
 useEffect(() => {
     const refresh = setInterval(() => {
@@ -53,6 +53,10 @@ useEffect(() => {
     }
 }, []);
 
+const handlePictureUpload = (e) => {
+    e.preventDefault();
+    pictureUpload(pictureFile)
+}
 
 const pictureUpload = (file) => {
     const storageRef = ref(storage, `users/${auth.currentUser.uid}/posts/${file.name}`);
@@ -64,11 +68,35 @@ const pictureUpload = (file) => {
         getDownloadURL(upload.snapshot.ref).then(async(url) => {
             await axios.patch('/user', {
                 uid: auth.currentUser.uid, 
-                quils: url,
+                quils: `${pictureCaption},${url}`,
                 createdAt: createdAt()
                });
         })
     })
+}
+
+const handleVideoUpload = (e) => {
+    e.preventDefault();
+    videoUpload(videoFile)
+}
+
+const videoUpload = (file) => {
+    if(file.type === "video/mp4"){
+        const storageRef = ref(storage, `users/${auth.currentUser.uid}/posts/${file.name}-videoquil`);
+        const upload = uploadBytesResumable(storageRef, file);
+        upload.on("state_changed", (snapshot) => {
+            const vidProg = Math.round((snapshot.bytesTransferred/ snapshot.totalBytes) * 100);
+            setVideoProgress(vidProg);
+        }, (err) => console.log(err), () => {
+            getDownloadURL(upload.snapshot.ref).then(async(url) => {
+                await axios.patch('/user', {
+                    uid: auth.currentUser.uid, 
+                    quils: `${videoCaption},${url}`,
+                    createdAt: createdAt()
+                   });
+            })
+        })
+    }
 }
 
 return(
@@ -129,9 +157,12 @@ return(
                                   <IoVideocam style={{verticalAlign: 'middle'}} size='25px'/>
                                   </button>} position={'top center'}>
                     <div id="upload-quil">
-                        <input className="change-avi" type={'file'}/>
-                        <button className="upload-button">Upload</button>
-                        <h4 style={{fontSize: '18px', marginTop: '0rem'}}>Uploading:</h4>
+                        <input className="change-avi" type='file' onChange={(e) => setVideoFile(e.target.files[0])}/>
+                        <input type='text' placeholder="Add caption" value={videoCaption} onChange={(e) => setVideoCaption(e.target.value)}/>
+                        <button className="upload-button" onClick={handleVideoUpload}>Upload</button>
+                        <h4 style={{fontSize: '18px', marginTop: '0rem'}}>
+                            Uploading: {videoProgress}%
+                        </h4>
                     </div>
                 </Popup>
                 <button className="icon-buttons">
@@ -142,6 +173,7 @@ return(
                                   </button>} position={'top center'}>
                         <div id="upload-quil">
                             <input className="change-avi" type='file' onChange={(e) => setPictureFile(e.target.files[0])}/>
+                            <input type='text' placeholder="Add caption" value={pictureCaption} onChange={(e) => setPictureCaption(e.target.value)}/>
                             <button className="upload-button" onClick={handlePictureUpload}>
                                 Upload
                             </button>

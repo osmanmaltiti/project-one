@@ -61,11 +61,12 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
 }
 #main-user-profile #upper-half #profile-card {
   display: flex;
+  margin-left: -2rem;
   flex-direction: row;
   gap: 1rem;
   width: -webkit-fit-content;

@@ -3,15 +3,50 @@ import '../styles/Card/Card.css';
 import {IoMdThumbsUp, IoMdThumbsDown, IoMdMore} from 'react-icons/io';
 import Popup from "reactjs-popup";
 
+
 export const Card = (props) => {
+    const url = props.write
+    const handleWrite = () => {
+         if(/project-one-2c857.appspot.com/g.test(url)){
+             if(/,/g.test(url)){
+                let array = url.split(',');
+                let [caption, link] = array;
+                if(/videoquil/g.test(url)){
+                    return <div>
+                        {caption} <br />
+                        <video id="quil-video" controls>
+                            <source src={`${link}`} type="video/mp4"/>
+                        </video>   
+                    </div> 
+                }
+                else{
+                    return <div>
+                        {caption} <br />
+                        <img id='quil-image' alt="" src={`${link}`} />
+                    </div> 
+                }
+             }
+             else{
+                if(/videoquil/g.test(url)){
+                    return  <video id="quil-video" controls>
+                                <source src={`${url}`} type="video/mp4"/>
+                            </video> 
+                }
+                else{
+                    return <img id='quil-image' alt="" src={`${url}`} />
+                }
+             }
+        }
+        else{    
+            return url
+        } 
+    }
     return(
         <div id='main-card'>
             <div id="top">
-                <img id="card-avi" alt={"Logo"} src={props.profileImg}/>
+                <button id="img-button" onClick={props.profile}><img id="card-avi" alt={""} src={props.profileImg}/></button>
                 <div id='write-area'>
-                    { /project-one-2c857.appspot.com/g.test(props.write) ? 
-                                        <img id='quil-image' alt="" src={props.write} /> :
-                                                            props.write }
+                    { handleWrite() }
                 </div>
                 <Popup
                     trigger={<button className="icon-button">

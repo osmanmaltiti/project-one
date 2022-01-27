@@ -13,6 +13,7 @@ function FollowingProfile() {
   const [data, setData] = useState({});
   const [userQuil, setUserQuil] = useState([]);
   const [update, setUpdate] = useState('');
+  
   useEffect(() => {
     const fetch = async(id) => {
       const res = await axios.get(`/user/userquery/${id}`);
@@ -24,7 +25,6 @@ function FollowingProfile() {
   
   const handleFollow = async(userId, followers) => {
     let data = { userId, followers }
-
     const res = await 
                   axios.patch(`/user/follow/${auth.currentUser.uid}`, {data})
     setUpdate(res.data)
@@ -62,13 +62,14 @@ function FollowingProfile() {
       <div id='upper-half-others'>
         <div id='profile-card-others'>
           <span>
-          <img id='profile-avi' alt={''} src={data.profileUrl}/>
-          <div id='credentials-others'>
-            <p className='credentials-item'>{data.fullname}</p>
-            <p className='credentials-item'>{data.displayname}</p>
-            <p className='credentials-item'>{data.followers?.length}</p>
-            <p className='credentials-item'>{data.following?.length}</p>
-          </div></span>
+            <img id='profile-avi' alt={''} src={data.profileUrl}/>
+            <div id='credentials-others'>
+              <p className='credentials-item'>{data.fullname}</p>
+              <p className='credentials-item'>{data.displayname}</p>
+              <p className='credentials-item'>{data.followers?.length}</p>
+              <p className='credentials-item'>{data.following?.length}</p>
+            </div>
+          </span>
           <button onClick={() => handleFollow(otherUser, data.followers)}>
             { btn() }
           </button>
