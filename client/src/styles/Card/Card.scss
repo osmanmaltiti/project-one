@@ -72,17 +72,12 @@
             margin-right: 10px;
           }
       }
-      [type = radio]{
-        opacity: 0%; width: 0; height: 0; 
-      }
-      [type = radio]:checked + .icons-like {
-          color: green;
-      }
-      [type = radio]:hover + .icons {
+      [type = button]{
+        background: none; border: none; 
+        width: 2rem; height: 2rem;
+        &:hover{
           cursor: pointer;
-      }
-      [type = radio]:checked + .icons-unlike {
-          color: red;
+        }
       }
   }
 }

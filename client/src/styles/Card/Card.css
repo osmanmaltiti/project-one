@@ -129,19 +129,14 @@
 #main-card #bottom #card-extras span {
   margin-right: 10px;
 }
-#main-card #bottom [type=radio] {
-  opacity: 0%;
-  width: 0;
-  height: 0;
+#main-card #bottom [type=button] {
+  background: none;
+  border: none;
+  width: 2rem;
+  height: 2rem;
 }
-#main-card #bottom [type=radio]:checked + .icons-like {
-  color: green;
-}
-#main-card #bottom [type=radio]:hover + .icons {
+#main-card #bottom [type=button]:hover {
   cursor: pointer;
-}
-#main-card #bottom [type=radio]:checked + .icons-unlike {
-  color: red;
 }
 
 #popup-delete {

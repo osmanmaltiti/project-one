@@ -18,7 +18,7 @@ export const Profile = () => {
   const [file, setFile] = useState();
   const [link, setLink] = useState(null);
   const [uploading, setUploading] = useState('......');
-  const [handleSignOut, quilMap] = useProfile();
+  const [handleSignOut, quilMap, getQuilAge] = useProfile();
   const dispatch = useDispatch();
 
 
@@ -87,7 +87,7 @@ export const Profile = () => {
             <p className='credentials-item'>
               <strong>Interactions: </strong>{likes + unlikes}</p>  
             <p className='credentials-item'>
-              <strong>Quil age: </strong>7 days</p>
+              <strong>Quil age: </strong>{ getQuilAge() }</p>
           </div>
         </div>
         <div>

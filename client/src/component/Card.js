@@ -62,13 +62,15 @@ export const Card = (props) => {
                 <div id='card-extras'>
                     <div id="card-extras-buttons">
                     <label>
-                        <input type={'radio'} value="like" name="likeUnlike" onChange={props.likeMe}/>
-                        <IoMdThumbsUp className="icons icons-like"  size='25px' style={ {verticalAlign: 'top'} }/>   
+                        <button type='button' id="like"  onClick={props.likeMe}>
+                            <IoMdThumbsUp className="icons icons-like"  size='25px' style={ {verticalAlign: 'top', color: props.likeState} }/>  
+                        </button> 
                     </label>
                         <p>{props.like}</p>
                     <label>
-                        <input type={'radio'} value="unlike" name='likeUnlike' onChange={props.unlikeMe}/>
-                        <IoMdThumbsDown className="icons icons-unlike" size='25px' style={ {verticalAlign: 'top'} }/>
+                        <button type='button' id="unlike" onClick={props.unlikeMe}>
+                            <IoMdThumbsDown className="icons icons-unlike" size='25px' style={ {verticalAlign: 'top', color: props.unLikeState} }/>
+                        </button>
                     </label>
                         <p>{props.unlike}</p></div>
                     <span>

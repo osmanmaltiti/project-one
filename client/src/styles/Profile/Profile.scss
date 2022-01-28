@@ -20,13 +20,15 @@
       .signout{
         @include signButton; display: flex;
         flex-direction: row; align-items: center;
-        width: 7rem; height: 2rem; 
-        justify-content: space-around;
+        width: 7rem; height: 2rem; background: none;
+        justify-content: space-around; border: none;
         margin-right: 1rem; font-size: 20px;
+        color: black;
         
         &:hover{
-          cursor: pointer; background-color: rgb(221, 44, 44);
-          border: none; font-size: 20px;
+          cursor: pointer; background: none;
+          border: 1px solid red; font-size: 20px;
+          color: red
         }
       }
   };
@@ -38,7 +40,7 @@
     
       #profile-card{
         display: flex; margin-left: -2rem;
-        flex-direction: row; gap: 1rem; width: fit-content; padding: 20px; margin-top: 1rem;
+        flex-direction: row; gap: 1rem; width: fit-content; padding: 20px; margin-top: 0rem;
         align-self: flex-start;
         
         #avi{
@@ -72,7 +74,7 @@
       
       #stats{
         display: flex; flex-direction: column;
-        padding-top: 1rem; margin-top: 3.2rem;
+        padding-top: 1rem; margin-top: 1.2rem;
         align-items: flex-end; margin-right: 2rem;
         
         .stats-item{

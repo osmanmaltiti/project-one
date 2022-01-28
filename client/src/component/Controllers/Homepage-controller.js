@@ -60,6 +60,12 @@ const useHome = () => {
           await axios.patch(`/user/quil/unlike/${item._id}`, {
               uid: auth.currentUser.uid
           });} }
+      likeState = {
+        item.likes.includes(auth.currentUser.uid) && 'green'
+      }
+      unLikeState = {
+        item.unlikes.includes(auth.currentUser.uid) && 'red'
+      }
       profile = {
         () => {
           if(item.uid === auth.currentUser.uid){
