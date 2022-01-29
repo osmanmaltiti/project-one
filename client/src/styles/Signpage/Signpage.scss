@@ -22,6 +22,7 @@
         
         .sign-button{
           @include signButton;
+          align-self: center;
         }
       }
 
@@ -47,6 +48,80 @@
       
       .sign-button{
         @include signButton;
+        align-self: center;
+      }
+    }
+  }
+}
+
+@media (max-width: 850px){
+  #main-sign{
+    display: flex; flex-direction: column;
+    align-items: center; width: 100%;
+    height: 100%;
+  
+    #content{
+      display: flex; flex-direction: column; 
+        justify-content:center; align-items: center;
+        margin-top: 1rem;
+
+      #signIn{
+        h3{
+          font-family: 'Roboto Condensed'; font-size: 20px;
+          align-self: flex-start;
+        }
+  
+        #signIn-form{
+          display: flex; flex-direction: column;
+          
+          .sign-input{
+            @include signInput;
+            font-size: 14px; height: 2rem;
+          }
+          
+          .sign-button{
+            @include signButton;
+            font-size: 16px; align-self: center;
+            width: 30%;
+            border-radius: 4px
+          }
+        }
+        
+        .sign-google{
+          margin: 0px 0px 10px 37px; font-family: 'Roboto Condensed';
+          font-size: 14px; background-color: rgb(55, 168, 212);
+          border: 2px solid transparent; border-radius: 4px;
+          padding: 4px; height: fit-content;
+          
+          &:hover{
+            background-color: white; color: black; 
+            cursor: pointer; border-color: black;
+            border: 2px solid black; padding: 4px;
+          }
+        }
+      }
+       
+      #signUp{
+        
+        h3{
+          font-family: 'Roboto Condensed'; font-size: 20px;
+        }
+      }
+      #signUp-form{
+        display: flex; flex-direction: column;
+        
+        
+
+        .sign-input{
+          @include signInput;
+          font-size: 14px; height: 2rem;
+        }
+        
+        .sign-button{
+          @include signButton;
+          font-size: 16px; align-self: center;
+          width: 30%; border-radius: 4px
+        }
       }
     }
   }

@@ -46,15 +46,17 @@ const useProfile = () => {
     />)
   }
 
-  const getQuilAge = () => {
-      const createdAt = '2021-12-1'
+  const getQuilAge = (createdAt) => {
+      const newArr = createdAt.split('-').reverse();
+      let newStr = newArr.join('-');
+      
       const dates = new Date();
       let day = dates.getDate();
       let month = dates.getMonth() + 1;
       let year = dates.getFullYear();
       const currentDate = `${year}-${month}-${day}`;
 
-      let start = moment(createdAt);
+      let start = moment(newStr);
       let end = moment(currentDate);
       let difference = end.diff(start, 'days');
 
@@ -86,7 +88,7 @@ const useProfile = () => {
       const months = init.firstmonthCount + init.secondMonthCount;
       const {yearsCount, daysCount} = init
       
-      return `${yearsCount} years ${months} months ${daysCount} days`
+      return `${yearsCount} yrs ${months} mths ${daysCount} days`
   }
 
   return [handleSignOut, quilMap, getQuilAge]

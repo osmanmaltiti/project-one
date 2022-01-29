@@ -63,13 +63,13 @@ export const Card = (props) => {
                     <div id="card-extras-buttons">
                     <label>
                         <button type='button' id="like"  onClick={props.likeMe}>
-                            <IoMdThumbsUp className="icons icons-like"  size='25px' style={ {verticalAlign: 'top', color: props.likeState} }/>  
+                            <IoMdThumbsUp className="icons icons-like"  size='21px' style={ {verticalAlign: 'top', color: props.likeState} }/>  
                         </button> 
                     </label>
                         <p>{props.like}</p>
                     <label>
                         <button type='button' id="unlike" onClick={props.unlikeMe}>
-                            <IoMdThumbsDown className="icons icons-unlike" size='25px' style={ {verticalAlign: 'top', color: props.unLikeState} }/>
+                            <IoMdThumbsDown className="icons icons-unlike" size='21px' style={ {verticalAlign: 'top', color: props.unLikeState} }/>
                         </button>
                     </label>
                         <p>{props.unlike}</p></div>

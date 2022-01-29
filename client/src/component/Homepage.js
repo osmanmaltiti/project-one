@@ -59,7 +59,7 @@ const handlePictureUpload = (e) => {
 }
 
 const pictureUpload = (file) => {
-    if(file.type === "image/jpeg"){
+    if(file.type === "image/jpeg" || file.type === "image/png" ){
         const storageRef = ref(storage, `users/${auth.currentUser.uid}/posts/${file.name}`);
         const upload = uploadBytesResumable(storageRef, file);
         upload.on("state_changed", (snapshot) => {
@@ -144,7 +144,7 @@ return(
             <div id='menu-items'>
                 <button className="menu-buttons" onClick={() => navigate('/home/profile')}>Profile</button>
                 <button className="menu-buttons" onClick={() => navigate('/home/explore')}>Search</button>
-                <button className="menu-buttons">Videos</button>
+                <button className="menu-buttons" onClick={() => navigate('/home/videos')}>Videos</button>
                 <button className="menu-buttons">Settings</button>
             </div>
             <textarea id="write" {...write} placeholder="What's on your mind....."></textarea>

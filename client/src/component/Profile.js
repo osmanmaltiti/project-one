@@ -21,9 +21,7 @@ export const Profile = () => {
   const [handleSignOut, quilMap, getQuilAge] = useProfile();
   const dispatch = useDispatch();
 
-
   const upload = async(files) => {
-    console.log(files)
     const storageRef = ref(storage, `users/${auth.currentUser.uid}/profile`);
     const uploadFile = uploadBytesResumable(storageRef, files);
     uploadFile.on("state_changed", (snapshot) => {
@@ -87,7 +85,7 @@ export const Profile = () => {
             <p className='credentials-item'>
               <strong>Interactions: </strong>{likes + unlikes}</p>  
             <p className='credentials-item'>
-              <strong>Quil age: </strong>{ getQuilAge() }</p>
+              <strong>Quil age: </strong>{ getQuilAge(user?.createdAt) }</p>
           </div>
         </div>
         <div>

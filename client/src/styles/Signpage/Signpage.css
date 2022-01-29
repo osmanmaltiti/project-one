@@ -53,6 +53,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  align-self: center;
 }
 #main-sign #content #signIn-form .sign-button:hover {
   background-color: white;
@@ -114,10 +115,157 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  align-self: center;
 }
 #main-sign #content #signUp-form .sign-button:hover {
   background-color: white;
   color: black;
   cursor: pointer;
   border-color: black;
+}
+
+@media (max-width: 850px) {
+  #main-sign {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  #main-sign #content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  #main-sign #content #signIn h3 {
+    font-family: "Roboto Condensed";
+    font-size: 20px;
+    align-self: flex-start;
+  }
+  #main-sign #content #signIn #signIn-form {
+    display: flex;
+    flex-direction: column;
+  }
+  #main-sign #content #signIn #signIn-form .sign-input {
+    margin: 5px 0px 5px 0px;
+    border-radius: 4px 4px 0px 0px;
+    height: 2.5rem;
+    width: 23rem;
+    border-right: none;
+    border-top: none;
+    border-left: none;
+    font-size: 18px;
+    background-color: #faf8f8;
+    border-color: black;
+    font-family: "Roboto";
+    font-size: 14px;
+    height: 2rem;
+  }
+  #main-sign #content #signIn #signIn-form .sign-input:focus {
+    outline: none;
+    background-color: #d3d1d1;
+    color: black;
+    font-weight: bolder;
+  }
+  #main-sign #content #signIn #signIn-form .sign-button {
+    width: 50%;
+    font-family: "Roboto Condensed";
+    margin: 6px 0px 10px 0px;
+    font-size: 18px;
+    border-color: white;
+    color: white;
+    background-color: black;
+    border-radius: 6px;
+    border-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    align-self: center;
+    width: 30%;
+    border-radius: 4px;
+  }
+  #main-sign #content #signIn #signIn-form .sign-button:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    border-color: black;
+  }
+  #main-sign #content #signIn .sign-google {
+    margin: 0px 0px 10px 37px;
+    font-family: "Roboto Condensed";
+    font-size: 14px;
+    background-color: #37a8d4;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    padding: 4px;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  #main-sign #content #signIn .sign-google:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    border-color: black;
+    border: 2px solid black;
+    padding: 4px;
+  }
+  #main-sign #content #signUp h3 {
+    font-family: "Roboto Condensed";
+    font-size: 20px;
+  }
+  #main-sign #content #signUp-form {
+    display: flex;
+    flex-direction: column;
+  }
+  #main-sign #content #signUp-form .sign-input {
+    margin: 5px 0px 5px 0px;
+    border-radius: 4px 4px 0px 0px;
+    height: 2.5rem;
+    width: 23rem;
+    border-right: none;
+    border-top: none;
+    border-left: none;
+    font-size: 18px;
+    background-color: #faf8f8;
+    border-color: black;
+    font-family: "Roboto";
+    font-size: 14px;
+    height: 2rem;
+  }
+  #main-sign #content #signUp-form .sign-input:focus {
+    outline: none;
+    background-color: #d3d1d1;
+    color: black;
+    font-weight: bolder;
+  }
+  #main-sign #content #signUp-form .sign-button {
+    width: 50%;
+    font-family: "Roboto Condensed";
+    margin: 6px 0px 10px 0px;
+    font-size: 18px;
+    border-color: white;
+    color: white;
+    background-color: black;
+    border-radius: 6px;
+    border-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    align-self: center;
+    width: 30%;
+    border-radius: 4px;
+  }
+  #main-sign #content #signUp-form .sign-button:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    border-color: black;
+  }
 }/*# sourceMappingURL=Signpage.css.map */

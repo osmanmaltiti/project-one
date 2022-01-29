@@ -7,6 +7,7 @@ import './App.css';
 import { Profile } from './component/Profile';
 import { Explore } from './component/Explore';
 import FollowingProfile from './component/Following-Profile';
+import Videos from './component/Videos';
 
 
 export const App = () => {
@@ -31,6 +32,10 @@ export const App = () => {
             <PrivateRoute>
               <FollowingProfile/>
             </PrivateRoute>}/>
+        <Route path={'/home/videos'} element={
+        <PrivateRoute>
+          <Videos/>
+        </PrivateRoute>}/>
       </Routes>
   )
 }

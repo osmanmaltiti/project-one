@@ -33,7 +33,7 @@ const useSignpage = () => {
   const handleSignUp = async(signups, event) => {
     event.preventDefault();
     const defaultProfile = process.env.REACT_APP_DEFAULT_PROFILE_URL;
-    const {fullname, displayname, email, number, password_reg} = signups;
+    const {fullname, displayname, email, number, password_reg, createdAt} = signups;
     reset_fullname(); reset_displayname();
     reset_email(); reset_number();
     reset_password_reg(); reset_con_pass();
@@ -46,7 +46,7 @@ const useSignpage = () => {
             uid: newUser.user.uid, fullname: fullname, 
             displayname: displayname,
             email: email, number: number,
-            profileUrl: defaultProfile
+            profileUrl: defaultProfile, createdAt
         });
     }
     catch(err){ console.log(err); }

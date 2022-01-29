@@ -28,14 +28,12 @@
   height: 5rem;
   border-radius: 50%;
   background: none;
+  box-shadow: 0 0 5px 0 gray;
 }
 #main-card #top #img-button #card-avi {
   border-radius: 50%;
   height: 5rem;
   width: 5rem;
-  border-width: 1px;
-  border-style: solid;
-  border-color: black;
   background-position: center;
   background-size: cover;
 }
@@ -152,4 +150,178 @@
   cursor: pointer;
   color: red;
   font-weight: bold;
+}
+
+@media (max-width: 850px) {
+  #main-card {
+    background-color: rgba(238, 236, 236, 0.329);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  #main-card #top {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    font-family: "Roboto Condensed";
+    justify-content: space-around;
+    gap: 10px;
+    padding: 5px 0px 5px 5px;
+    margin: 0px;
+  }
+  #main-card #top #img-button {
+    border: none;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: none;
+  }
+  #main-card #top #img-button #card-avi {
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    background-position: center;
+    background-size: cover;
+  }
+  #main-card #top #img-button:hover {
+    cursor: pointer;
+  }
+  #main-card #top #write-area {
+    width: 75%;
+    font-family: "Roboto";
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  #main-card #top #quil-image {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    width: 100%;
+    margin-top: 0.5rem;
+    -o-object-fit: fill;
+       object-fit: fill;
+  }
+  #main-card #top #quil-video {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    width: 100%;
+    margin-top: 0.5rem;
+    -o-object-fit: fill;
+       object-fit: fill;
+  }
+  #main-card #top .icon-button {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    background: none;
+    border: none;
+  }
+  #main-card #top .icon-button:hover {
+    cursor: pointer;
+    color: #007a00;
+  }
+  #main-card #bottom {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    font-family: "Roboto";
+    justify-content: space-between;
+    padding: 10px 0px 10px 0px;
+  }
+  #main-card #bottom #userhandle {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    background-color: #fffdfd;
+    margin: 0px;
+    padding: 2px;
+    font-size: 13px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 4px;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  #main-card #bottom #card-extras {
+    width: 35%;
+    background-color: #fffdfd;
+    margin-right: 2px;
+    border-radius: 4px;
+    padding: 2px;
+    height: 1rem;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow: hidden;
+    justify-content: space-between;
+  }
+  #main-card #bottom #card-extras #card-extras-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 19px;
+  }
+  #main-card #bottom #card-extras #card-extras-buttons p {
+    font-size: 14px;
+  }
+  #main-card #bottom #card-extras span {
+    margin-right: 10px;
+    opacity: 0;
+  }
+  #main-card #bottom [type=button] {
+    background: none;
+    border: none;
+    width: 1rem;
+    height: 2rem;
+  }
+  #main-card #bottom [type=button]:hover {
+    cursor: pointer;
+  }
+
+  #popup-delete {
+    height: 2rem;
+    width: 5rem;
+    font-size: 13px;
+    font-family: "Roboto condensed";
+    border-radius: 0px;
+    background: white;
+  }
+
+  #popup-delete:hover {
+    cursor: pointer;
+    color: red;
+    font-weight: bold;
+  }
+}
+@media (max-width: 458px) {
+  #main-card #card-extras-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1px;
+    justify-content: space-around;
+    padding-left: 0;
+    margin-left: -0.2rem;
+  }
 }/*# sourceMappingURL=Card.css.map */

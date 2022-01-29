@@ -107,13 +107,14 @@ router.get('/profile/:uid', async(req, res) => {
     if(err){
       console.log(`Error message: ${err}`)}
       else{
-        const {displayname, profileUrl, fullname, quil, followers, following } = userData;
+        const {displayname, profileUrl, fullname, quil, followers, following, createdAt } = userData;
       res.json({
         displayname, 
         profileUrl,
         fullname,
         followers,
         following,
+        createdAt,
         quil
       })};
   });
