@@ -9,7 +9,7 @@ import useHome from "./Controllers/Homepage-controller";
 import axios from "axios";
 import Popup from "reactjs-popup";
 import { IoPerson, IoStatsChart, IoMic, 
-         IoImage, IoVideocam, IoSend, IoPencil } from "react-icons/io5";
+         IoImage, IoVideocam, IoSend } from "react-icons/io5";
 import { IoMdHappy, IoMdSad } from "react-icons/io";
 import { FaFeatherAlt } from "react-icons/fa"
 import logo from "../images/newLogo.png"
@@ -54,7 +54,7 @@ useEffect(() => {
     return () => {
         clearInterval(refresh);
     }
-}, []);
+}, [dispatch, quil]);
 
 const handlePictureUpload = (e) => {
     e.preventDefault();
@@ -163,18 +163,18 @@ return(
             </div>
         </div>
         <div id="right-pane">
-            <div id='menu-items' style={ ss == true ? {width: '80%', padding: '10px 3px 10px 3px'}: null} >
+            <div id='menu-items' style={ ss === true ? {width: '80%', padding: '10px 3px 10px 3px'}: null} >
                 <button className="menu-buttons" onClick={() => navigate('/home/profile')}
-                style={ ss == true ? {width: '90%', fontSize: '14px'}: null}>Profile</button>
+                style={ ss === true ? {width: '90%', fontSize: '14px'}: null}>Profile</button>
                 
                 <button className="menu-buttons" onClick={() => navigate('/home/explore')}
-                style={ ss == true ? {width: '90%', fontSize: '14px'}: null}>Search</button>
+                style={ ss === true ? {width: '90%', fontSize: '14px'}: null}>Search</button>
                 
                 <button className="menu-buttons" onClick={() => navigate('/home/videos')}
-                style={ ss == true ? {width: '90%', fontSize: '14px'}: null}>Videos</button>
+                style={ ss === true ? {width: '90%', fontSize: '14px'}: null}>Videos</button>
                 
                 <button className="menu-buttons" onClick={() => navigate('/home/settings')}
-                style={ ss == true ? {width: '90%', fontSize: '14px'}: null}>Settings</button>
+                style={ ss === true ? {width: '90%', fontSize: '14px'}: null}>Settings</button>
             </div>
             
             <textarea id="write" {...write} placeholder="What's on your mind....."></textarea>
