@@ -14,9 +14,12 @@ import { IoMdHappy, IoMdSad } from "react-icons/io";
 import { FaFeatherAlt } from "react-icons/fa"
 import logo from "../images/newLogo.png"
 import '../styles/Homepage/homepage.css';
+import useMedia from "./Controllers/custom-hooks/media-query-hook";
 
 
 export const Home = () => {
+const xs = useMedia('(max-width: 458px)');
+const ss = useMedia('(max-width: 1250px)'); 
 const navigate = useNavigate();
 const [write, reset_write] = useInput('');
 const dispatch = useDispatch();
@@ -114,23 +117,42 @@ return(
         <div id="left-pane">
             <div id="left-pane-items">
                 <img id="user-avi" alt={""} src={user?.profileUrl}/>
-                <div id='left-item-one'>
+                
+                <div id='left-item-one' style={ss === true ? {marginLeft: '-0.5rem'} : null}>
                     <IoPerson style={{verticalAlign: 'middle', color: 'black'}} size='30px'/>
-                    <h4>{user?.displayname}</h4>
+                    
+                    <h4 style={xs === true || ss === true ? {fontSize: "17px"} : {fontSize: "21.5px"}}>{user?.displayname}
+                    </h4>
                 </div>
-                <div id='left-item-two'>
-                    <span><IoMdHappy style={{verticalAlign: 'middle', color: 'black'}} size='30px'/>
-                    <h4>{likes}</h4></span>
-                    <span><IoMdSad style={{verticalAlign: 'middle', color: 'black'}} size='30px'/>
-                    <h4>{unlikes}</h4></span>
+                <div id='left-item-two' style={ss === true ? {marginLeft: 0, gap: '2rem'} : null}>
+                    <span>
+                        <IoMdHappy style={{verticalAlign: 'middle', color: 'black'}} size='30px'/>
+                     
+                        <h4 style={xs === true || ss === true ? {fontSize: "14px"} : {fontSize: "21.5px"}}>{likes}
+                        </h4>
+                    </span>
+                    <span>
+                     
+                        <IoMdSad style={{verticalAlign: 'middle', color: 'black'}} size='30px'/>
+                     
+                        <h4 style={xs === true || ss === true ? {fontSize: "14px"} : {fontSize: "21.5px"}}>{unlikes}
+                        </h4>
+                    </span>
                 </div>
-                <div id='left-item-three'>
+                <div id='left-item-three' style={ss === true ? {marginLeft: 0, gap: '2.5rem'} : null}>
                     <span>
-                    <IoStatsChart style={{verticalAlign: 'middle', color: 'black'}} size='30px'/>
-                    <h4>{popularity !== undefined ? `${popularity}%` : '...%'}</h4></span>
-                    <span>
-                    <FaFeatherAlt style={{verticalAlign: 'middle'}} size='25px'/>
-                    <h4>{totalQuil}</h4></span>
+                        <IoStatsChart style={{verticalAlign: 'middle', color: 'black'}} size={xs === true || ss === true ? '25px' : '30px'}/>
+                     
+                        <h4 id = 'popularity' style={xs === true || ss === true ? {fontSize: "14px"} : {fontSize: "21px"}}>{popularity !== undefined ? `${popularity}` : '....'}
+                        </h4>
+                    </span>
+                    
+                    <span style={ss === true ? {marginLeft: '0rem', gap: '5px'} : null}>
+                        <FaFeatherAlt style={{verticalAlign: 'middle'}} size={xs === true || ss === true ? '20px' : '28px'}/>
+                     
+                        <h4 style={xs === true || ss === true ? {fontSize: "14px"} : {fontSize: "21px"}}>{totalQuil}
+                        </h4>
+                    </span>
                 </div>
             </div>
         </div>
@@ -141,44 +163,65 @@ return(
             </div>
         </div>
         <div id="right-pane">
-            <div id='menu-items'>
-                <button className="menu-buttons" onClick={() => navigate('/home/profile')}>Profile</button>
-                <button className="menu-buttons" onClick={() => navigate('/home/explore')}>Search</button>
-                <button className="menu-buttons" onClick={() => navigate('/home/videos')}>Videos</button>
-                <button className="menu-buttons">Settings</button>
+            <div id='menu-items' style={ ss == true ? {width: '80%', padding: '10px 3px 10px 3px'}: null} >
+                <button className="menu-buttons" onClick={() => navigate('/home/profile')}
+                style={ ss == true ? {width: '90%', fontSize: '14px'}: null}>Profile</button>
+                
+                <button className="menu-buttons" onClick={() => navigate('/home/explore')}
+                style={ ss == true ? {width: '90%', fontSize: '14px'}: null}>Search</button>
+                
+                <button className="menu-buttons" onClick={() => navigate('/home/videos')}
+                style={ ss == true ? {width: '90%', fontSize: '14px'}: null}>Videos</button>
+                
+                <button className="menu-buttons" onClick={() => navigate('/home/settings')}
+                style={ ss == true ? {width: '90%', fontSize: '14px'}: null}>Settings</button>
             </div>
+            
             <textarea id="write" {...write} placeholder="What's on your mind....."></textarea>
+            
             <div id="icon-buttons">
+                
                 <button className="send" 
                         onClick={(e) => handleQuil(write.value, reset_write, e)}>
                           send 
                         <IoSend size='20px' style={{verticalAlign: 'middle'}}/>
                 </button>
+                
                 <div id='icon-group'>
-                <Popup trigger = {<button className="icon-buttons">
+                    <Popup trigger = {<button className="icon-buttons">
                                   <IoVideocam style={{verticalAlign: 'middle'}} size='25px'/>
-                                  </button>} position={'top center'}>
-                    <div id="upload-quil">
+                                  </button>} position={xs === true ? 'top left': 'top center'}>
+                    
+                    <div id="upload-quil" style={xs === true ? {padding: '20px'}: null}>
                         <input className="change-avi" type='file' onChange={(e) => setVideoFile(e.target.files[0])}/>
+                        
                         <textarea className="caption" type='text' placeholder="Add caption" value={videoCaption} onChange={(e) => setVideoCaption(e.target.value)} maxLength='125'/>
+                        
                         <button className="upload-button" onClick={handleVideoUpload}>Upload</button>
+                        
                         <h4 style={{fontSize: '18px', marginTop: '0rem'}}>
                             Uploading: {videoProgress}%
                         </h4>
                     </div>
                 </Popup>
+                
                 <button className="icon-buttons">
                     <IoMic style={{verticalAlign: 'middle'}} size='25px'/>
                 </button>
+                
                 <Popup trigger = {<button className="icon-buttons">
                                     <IoImage style={{verticalAlign: 'middle'}} size='25px'/>
-                                  </button>} position={'top center'}>
-                        <div id="upload-quil">
+                                  </button>} position={xs === true ? 'top left': 'top center'}>
+                        
+                        <div id="upload-quil" style={xs === true ? {padding: '20px'}: null}>                         
                             <input className="change-avi" type='file' onChange={(e) => setPictureFile(e.target.files[0])}/>
+                            
                             <textarea className="caption" type='text' placeholder="Add caption" value={pictureCaption} onChange={(e) => setPictureCaption(e.target.value)} maxLength='125'/>
+                            
                             <button className="upload-button" onClick={handlePictureUpload}>
                                 Upload
                             </button>
+                            
                             <h4 style={{fontSize: '18px', marginTop: '0rem'}}>
                                 Uploading: {progress}%
                             </h4>

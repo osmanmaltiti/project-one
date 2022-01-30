@@ -24,6 +24,7 @@ const useProfile = () => {
                 .map( item => <Card key = {item._id}
                 write = {item.quil}
                 name = {item.displayname}
+                uid = {item.uid}
                 profileImg = {item.profileUrl}
                 like = {item.likes.length}
                 unlike = {item.unlikes.length}

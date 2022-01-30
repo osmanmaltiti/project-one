@@ -46,6 +46,7 @@
   margin-right: 1rem;
   font-size: 20px;
   color: black;
+  border-radius: 3px;
 }
 #main-user-profile #profile-header .signout:hover {
   background-color: white;

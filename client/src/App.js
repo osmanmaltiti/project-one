@@ -8,6 +8,7 @@ import { Profile } from './component/Profile';
 import { Explore } from './component/Explore';
 import FollowingProfile from './component/Following-Profile';
 import Videos from './component/Videos';
+import Settings from './component/Settings';
 
 
 export const App = () => {
@@ -35,6 +36,10 @@ export const App = () => {
         <Route path={'/home/videos'} element={
         <PrivateRoute>
           <Videos/>
+        </PrivateRoute>}/>
+        <Route path={'/home/settings'} element={
+        <PrivateRoute>
+          <Settings/>
         </PrivateRoute>}/>
       </Routes>
   )

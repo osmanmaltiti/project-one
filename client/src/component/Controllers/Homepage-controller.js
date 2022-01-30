@@ -43,6 +43,7 @@ const useHome = () => {
   const quilMap = (quil) => {
     return quil?.map(item => <Card key = {item._id}
       write = {item.quil}
+      uid = {item.uid}
       name = {item.displayname}
       profileImg = {item.profileUrl}
       time = {`${item.date?.hour}:${item.date?.minute}`}

@@ -39,6 +39,7 @@
       .icon-button{
         width: fit-content; height: fit-content;
         background: none; border: none;
+        
       }.icon-button:hover{
           cursor: pointer; color: rgb(0, 122, 0);
       }
@@ -82,11 +83,12 @@
 }
 #popup-delete{
   height: 2rem; width: 8rem; font-size: 17px;
-  font-family: 'Roboto condensed'; border-radius: 6px;
-  background: white;
+  font-family: 'Roboto condensed'; 
+  background: white; border-radius: 3px;
 }
 #popup-delete:hover{
   cursor: pointer; color: red; font-weight: bold;
+  border-color: red;
 }
 
 
@@ -191,6 +193,9 @@
 
 @media (max-width: 458px){
   #main-card{
+      #write-area{
+        font-size: 14px !important;
+      }
       #card-extras-buttons{
         display: flex; flex-direction: row;
         align-items: center; gap: 1px;

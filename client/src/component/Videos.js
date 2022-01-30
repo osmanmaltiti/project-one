@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { auth } from '../services/firebase';
 import { Card } from '../component/Card';
-import '../styles/Following-Profile/Following-Profile.css';
+import '../styles/Video/videos.css';
 
 
 const Videos = () => {
@@ -39,7 +39,7 @@ const Videos = () => {
   }
 
   return (
-    <div id='main-user-profile'>
+    <div id='main-video'>
       <p style={{fontSize: '30px', fontFamily: "Roboto Condensed", 
                   alignSelf: 'flex-start', marginLeft: '4rem'}}>Videos</p>
       <div id='lower-half-others'>

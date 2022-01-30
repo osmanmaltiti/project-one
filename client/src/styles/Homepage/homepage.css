@@ -40,6 +40,7 @@
   background: none;
   color: black;
   border: none;
+  border-radius: 3px;
 }
 #main #header .signOut:hover {
   background-color: white;
@@ -95,7 +96,6 @@
   margin-left: 5px;
   height: 2rem;
   padding: 2px 0 2px 1rem;
-  background-color: rgba(222, 184, 135, 0.435);
   border-radius: 4px;
   margin-top: -1rem;
 }
@@ -165,6 +165,11 @@
   display: flex;
   flex-direction: column;
   justify-content: stretch;
+}
+#main #body #middle-pane::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.342);
+  outline: 1rem;
+  border-radius: 6px;
 }
 #main #body #right-pane {
   width: 20%;
@@ -408,25 +413,28 @@ h4 {
     width: 100%;
   }
   #main #body #left-pane {
-    width: 12%;
+    width: 10%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    margin-left: 15px;
+    margin-left: 5px;
     margin-top: -0.5rem;
   }
   #main #body #left-pane #left-pane-items {
     display: flex;
     flex-direction: column;
     box-shadow: 0px 0px 5px 2px #d4d3d3;
-    width: 100%;
+    width: 2.5rem;
     margin-top: 1rem;
-    border-radius: 10px;
-    height: 40%;
+    border-radius: 6px;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
     overflow: hidden;
-    padding: 5px;
+    padding: 5px 0 0 12px;
     align-items: center;
+    padding-bottom: 1.5rem;
   }
   #main #body #left-pane #left-pane-items #user-avi {
     width: 3rem;
@@ -434,6 +442,7 @@ h4 {
     background-size: cover;
     background-position: center;
     border-radius: 50%;
+    margin-left: -0.8rem;
   }
   #main #body #left-pane #left-pane-items #left-item-one {
     display: flex;
@@ -536,6 +545,50 @@ h4 {
     padding-bottom: 0rem;
     align-items: flex-end;
   }
+  #main #body #right-pane #menu-items {
+    display: flex;
+    flex-direction: column;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    width: 0rem;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 2px #d4d3d3;
+    margin: 0.5rem 0.5rem 0px 0px;
+    gap: 10px;
+    background-color: white;
+    overflow: hidden;
+  }
+  #main #body #right-pane #menu-items:hover {
+    width: 15rem !important;
+    position: relative;
+    background-color: white;
+  }
+  #main #body #right-pane #menu-items:hover .menu-buttons {
+    width: 90%;
+    color: white;
+  }
+  #main #body #right-pane .menu-buttons {
+    height: 2rem;
+    width: 0rem;
+    border-radius: 15px;
+    font-family: "Roboto";
+    font-size: 18px;
+    border-color: black;
+    overflow: hidden;
+    background-color: black;
+    color: black;
+    padding: 0px;
+  }
+  #main #body #right-pane .menu-buttons:hover {
+    cursor: pointer;
+    background-color: white;
+    color: black !important;
+    border-color: black;
+    font-weight: bold;
+  }
   #main #body #right-pane #write {
     height: 10rem;
     width: 0.7rem;
@@ -588,50 +641,6 @@ h4 {
   #main #body #right-pane #write:hover::placeholder {
     opacity: 100%;
   }
-  #main #body #right-pane #menu-items {
-    display: flex;
-    flex-direction: column;
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
-    width: 0rem;
-    justify-content: space-evenly;
-    align-items: center;
-    border-radius: 5px;
-    box-shadow: 0px 0px 5px 2px #d4d3d3;
-    margin: 0.5rem 0.5rem 0px 0px;
-    gap: 10px;
-    padding: 10px;
-    background-color: white;
-    overflow: hidden;
-  }
-  #main #body #right-pane #menu-items:hover {
-    width: 15rem;
-    position: relative;
-    background-color: white;
-  }
-  #main #body #right-pane #menu-items:hover .menu-buttons {
-    width: 90%;
-  }
-  #main #body #right-pane .menu-buttons {
-    height: 2rem;
-    width: 0rem;
-    border-radius: 15px;
-    font-family: "Roboto";
-    font-size: 18px;
-    border-color: black;
-    overflow: hidden;
-    background-color: black;
-    color: white;
-    padding: 0px;
-  }
-  #main #body #right-pane .menu-buttons:hover {
-    cursor: pointer;
-    background-color: white;
-    color: black;
-    border-color: black;
-    font-weight: bold;
-  }
   #main #body #right-pane #icon-buttons {
     display: flex;
     flex-direction: row-reverse;
@@ -658,6 +667,21 @@ h4 {
     opacity: 100%;
   }
   #main #body #right-pane #icon-buttons:hover #icon-group {
+    opacity: 100%;
+  }
+  #main #body #right-pane #icon-buttons:focus {
+    gap: 5px;
+    width: 15.4rem;
+    justify-content: space-between;
+    position: relative;
+    background-color: white;
+    border-color: black;
+    opacity: 100%;
+  }
+  #main #body #right-pane #icon-buttons:focus .send {
+    opacity: 100%;
+  }
+  #main #body #right-pane #icon-buttons:focus #icon-group {
     opacity: 100%;
   }
   #main #body #right-pane .send {
@@ -795,22 +819,452 @@ h4 {
     display: flex;
     flex-direction: column;
     box-shadow: 0px 0px 5px 2px #d4d3d3;
+    width: 70%;
+    margin-top: 1rem;
+    border-radius: 3px;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    overflow: hidden;
+    align-items: center;
+    padding-left: 1rem;
+    padding-bottom: 1.5rem;
+  }
+  #main #body #left-pane #left-pane-items #user-avi {
+    width: 2.7rem;
+    height: 2.5rem;
+    background-size: cover;
+    background-position: center;
+    border-radius: 3px;
+  }
+  #main #body #left-pane #left-pane-items #left-item-one {
+    display: flex;
+    align-items: center;
+    width: 0;
+    padding: 2px 0 2px 1rem;
+    background-color: white;
+    border-radius: 4px;
+    margin-top: -2rem;
+    height: 0;
+  }
+  #main #body #left-pane #left-pane-items #left-item-one h4 {
+    height: 0;
+    width: 0;
+    opacity: 0;
+  }
+  #main #body #left-pane #left-pane-items #left-item-two {
+    display: flex;
+    flex-direction: column;
+    margin-top: -1.5rem;
+    gap: 2rem;
+  }
+  #main #body #left-pane #left-pane-items #left-item-two span {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: -0.5rem;
+  }
+  #main #body #left-pane #left-pane-items #left-item-two span h4 {
+    font-size: 22px;
+  }
+  #main #body #left-pane #left-pane-items #left-item-three {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 7px;
+  }
+  #main #body #left-pane #left-pane-items #left-item-three span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2px;
+    margin-left: -0.35rem;
+  }
+  #main #body #left-pane #left-pane-items #left-item-three span h4 {
+    font-size: 20px;
+  }
+  #main #body #middle-pane {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden scroll;
+    margin: 0.5rem 20px 0px 5px;
+    height: 100%;
+    padding: 10px 0px 0 0px;
+    border-radius: 6px;
+    box-shadow: 0px 0px 5px 2px #d4d3d3;
+    margin-left: 0.3rem;
+    width: 100%;
+    border-radius: 1px;
+    margin-right: 1.5%;
+  }
+  #main #body #middle-pane::-webkit-scrollbar {
+    width: 0.4rem;
+    background-color: white;
+    opacity: 50%;
+    border-radius: 6px;
+  }
+  #main #body #middle-pane::-webkit-scrollbar-track {
+    border-radius: 6px;
+  }
+  #main #body #middle-pane::-webkit-scrollbar-thumb {
+    background-color: black;
+    outline: 1rem;
+    border-radius: 6px;
+  }
+  #main #body #middle-pane #card-border {
+    height: 100%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+  }
+  #main #body #middle-pane::-webkit-scrollbar {
+    width: 0.3rem;
+    background-color: white;
+    opacity: 50%;
+    border-radius: 6px;
+  }
+  #main #body #middle-pane::-webkit-scrollbar-thumb {
+    background-color: rgba(128, 128, 128, 0.075);
+    outline: 1rem;
+    border-radius: 6px;
+  }
+  #main #body #right-pane {
+    width: 0%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 0rem;
+    align-items: flex-end;
+  }
+  #main #body #right-pane #write {
+    height: 10rem;
+    width: 0.7rem;
+    font-family: "Roboto";
+    font-size: 18px;
+    margin-right: 0.5rem;
+    overflow: hidden;
+    border-radius: 5px;
+    resize: none;
+    border: 2px solid white;
+    background-color: white;
+    box-shadow: 0px 0px 5px 2px #d4d3d3;
+    position: absolute;
+    left: 0.5rem;
+    top: 26rem;
+  }
+  #main #body #right-pane #write::-moz-placeholder {
+    opacity: 0;
+  }
+  #main #body #right-pane #write:-ms-input-placeholder {
+    opacity: 0;
+  }
+  #main #body #right-pane #write::placeholder {
+    opacity: 0;
+  }
+  #main #body #right-pane #write:focus {
+    font-weight: bold;
+    width: 15rem;
+    position: absolute;
+    background-color: white;
+    left: 0.5rem;
+    top: 26rem;
+  }
+  #main #body #right-pane #write:focus::-moz-placeholder {
+    opacity: 100%;
+  }
+  #main #body #right-pane #write:focus:-ms-input-placeholder {
+    opacity: 100%;
+  }
+  #main #body #right-pane #write:focus::placeholder {
+    opacity: 100%;
+  }
+  #main #body #right-pane #write:hover {
+    width: 15rem;
+    background-color: white;
+    position: absolute;
+    left: 0.5rem;
+    top: 26rem;
+    border-color: black;
+  }
+  #main #body #right-pane #write:hover::-moz-placeholder {
+    opacity: 100%;
+  }
+  #main #body #right-pane #write:hover:-ms-input-placeholder {
+    opacity: 100%;
+  }
+  #main #body #right-pane #write:hover::placeholder {
+    opacity: 100%;
+  }
+  #main #body #right-pane #menu-items {
+    display: flex;
+    flex-direction: column;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    width: 1rem !important;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 2px #d4d3d3;
+    margin: 0.5rem 0.5rem 0px 0px;
+    gap: 10px;
+    padding: 10px;
+    background-color: white;
+    overflow: hidden;
+    position: absolute;
+    left: 0.5rem;
+    top: 20rem;
+  }
+  #main #body #right-pane #menu-items:hover {
+    width: 15rem;
+    position: absolute;
+    left: 0.5rem;
+    top: 20rem;
+    background-color: white;
+  }
+  #main #body #right-pane #menu-items:hover .menu-buttons {
+    width: 90%;
+    color: white !important;
+  }
+  #main #body #right-pane #menu-items:focus {
+    width: 15rem;
+    position: absolute;
+    left: 0.5rem;
+    top: 20rem;
+    background-color: white;
+  }
+  #main #body #right-pane #menu-items:focus .menu-buttons {
+    width: 90%;
+  }
+  #main #body #right-pane .menu-buttons {
+    height: 2rem;
+    width: 0rem;
+    border-radius: 15px;
+    font-family: "Roboto";
+    font-size: 18px;
+    border-color: black;
+    overflow: hidden;
+    background-color: black;
+    color: black;
+    padding: 0px;
+  }
+  #main #body #right-pane .menu-buttons:hover {
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border-color: black;
+    font-weight: bold;
+  }
+  #main #body #right-pane #icon-buttons {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 5px;
+    width: 1rem;
+    justify-content: space-between;
+    outline: 1px solid white;
+    border-radius: 3px;
+    margin-right: 0.6rem;
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 0px 0px 5px 2px #d4d3d3;
+    position: absolute;
+    left: 0.5rem;
+    top: 48rem;
+  }
+  #main #body #right-pane #icon-buttons:hover {
+    gap: 5px;
+    width: 15.4rem;
+    justify-content: space-between;
+    border-radius: black;
+    position: absolute;
+    left: 0.5rem;
+    top: 48rem;
+    background-color: white;
+    opacity: 100%;
+  }
+  #main #body #right-pane #icon-buttons:hover .send {
+    opacity: 100%;
+  }
+  #main #body #right-pane #icon-buttons:hover #icon-group {
+    opacity: 100%;
+  }
+  #main #body #right-pane #icon-buttons:focus {
+    gap: 5px;
+    width: 15.4rem;
+    justify-content: space-between;
+    border-radius: black;
+    position: absolute;
+    left: 0.5rem;
+    top: 48rem;
+    background-color: white;
+    opacity: 100%;
+  }
+  #main #body #right-pane #icon-buttons:focus .send {
+    opacity: 100%;
+  }
+  #main #body #right-pane #icon-buttons:focus #icon-group {
+    opacity: 100%;
+  }
+  #main #body #right-pane .send {
+    width: 50%;
+    font-family: "Roboto Condensed";
+    margin: 6px 0px 10px 0px;
+    font-size: 18px;
+    border-color: white;
+    color: white;
+    background-color: black;
+    border-radius: 6px;
+    border-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    height: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 5px;
+    opacity: 0;
+  }
+  #main #body #right-pane .send:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    border-color: black;
+  }
+  #main #body #right-pane .send:hover {
+    cursor: pointer;
+  }
+  #main #body #right-pane .send:focus {
+    outline: none;
+  }
+  #main #body #right-pane .icon-buttons {
+    border: none;
+    background-color: inherit;
+    width: 1.2rem;
+    margin-right: 7px;
+  }
+  #main #body #right-pane .icon-buttons:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+  #main #body #right-pane .icon-buttons:focus {
+    outline: none;
+  }
+  #main #body #right-pane #icon-group {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    opacity: 0;
+  }
+}
+@media (max-height: 825px) and (max-width: 458px) {
+  #main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+  }
+  #main #header {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem 0rem 1rem 0rem;
+    height: 5%;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 0px 5px 2px #d4d3d3;
+    padding-bottom: 10px;
+  }
+  #main #header #nav-bar {
+    padding-right: 1rem;
+  }
+  #main #header #header-logo {
+    padding-left: 1rem;
+    height: 2rem;
+  }
+  #main #header .signOut {
+    width: 50%;
+    font-family: "Roboto Condensed";
+    margin: 6px 0px 10px 0px;
+    font-size: 18px;
+    border-color: white;
+    color: white;
+    background-color: black;
+    border-radius: 6px;
+    border-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    width: 0rem;
+    background: none;
+    color: black;
+    border: none;
+  }
+  #main #header .signOut:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    border-color: black;
+  }
+  #main #header .signOut:hover {
+    color: red;
+    outline: 1px solid red;
+  }
+  #main #header:hover .signOut {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    opacity: 100%;
+  }
+  #main #body {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  #main #body #left-pane {
+    width: 12%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 10px;
+    margin-top: -0.5rem;
+  }
+  #main #body #left-pane #left-pane-items {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 5px 2px #d4d3d3;
     width: 100%;
     margin-top: 1rem;
     border-radius: 3px;
-    height: 2rem;
+    height: 1.8rem;
     overflow: hidden;
     padding: 5px;
     align-items: center;
   }
-  #main #body #left-pane #left-pane-items:hover {
-    height: 14rem;
-  }
   #main #body #left-pane #left-pane-items #user-avi {
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 95%;
+    height: 10rem;
     background-size: cover;
     background-position: center;
+    border-radius: 3px;
+  }
+  #main #body #left-pane #left-pane-items:hover {
+    height: 6rem;
+  }
+  #main #body #left-pane #left-pane-items:hover #user-avi {
+    width: 3rem;
+    height: 8rem;
+    border-radius: 3px;
   }
   #main #body #left-pane #left-pane-items #left-item-one {
     display: flex;
@@ -928,7 +1382,7 @@ h4 {
     box-shadow: 0px 0px 5px 2px #d4d3d3;
     position: absolute;
     left: 0.5rem;
-    top: 26rem;
+    top: 17rem;
   }
   #main #body #right-pane #write::-moz-placeholder {
     opacity: 0;
@@ -945,7 +1399,7 @@ h4 {
     position: absolute;
     background-color: white;
     left: 0.5rem;
-    top: 35rem;
+    top: 17rem;
   }
   #main #body #right-pane #write:focus::-moz-placeholder {
     opacity: 100%;
@@ -961,7 +1415,7 @@ h4 {
     background-color: white;
     position: absolute;
     left: 0.5rem;
-    top: 35rem;
+    top: 17rem;
     border-color: black;
   }
   #main #body #right-pane #write:hover::-moz-placeholder {
@@ -991,16 +1445,26 @@ h4 {
     overflow: hidden;
     position: absolute;
     left: 0.5rem;
-    top: 20rem;
+    top: 12rem;
   }
   #main #body #right-pane #menu-items:hover {
     width: 15rem;
     position: absolute;
     left: 0.5rem;
-    top: 20rem;
+    top: 12rem;
     background-color: white;
   }
   #main #body #right-pane #menu-items:hover .menu-buttons {
+    width: 90%;
+  }
+  #main #body #right-pane #menu-items:focus {
+    width: 12rem;
+    position: absolute;
+    left: 0.5rem;
+    top: 10rem;
+    background-color: white;
+  }
+  #main #body #right-pane #menu-items:focus .menu-buttons {
     width: 90%;
   }
   #main #body #right-pane .menu-buttons {
@@ -1035,8 +1499,8 @@ h4 {
     overflow: hidden;
     box-shadow: 0px 0px 5px 2px #d4d3d3;
     position: absolute;
-    left: 0.5rem;
-    top: 48rem;
+    left: 0.55rem;
+    top: 37rem;
   }
   #main #body #right-pane #icon-buttons:hover {
     gap: 5px;
@@ -1044,8 +1508,8 @@ h4 {
     justify-content: space-between;
     border-radius: black;
     position: absolute;
-    left: 0.5rem;
-    top: 48rem;
+    left: 0.55rem;
+    top: 37rem;
     background-color: white;
     opacity: 100%;
   }
@@ -1053,6 +1517,23 @@ h4 {
     opacity: 100%;
   }
   #main #body #right-pane #icon-buttons:hover #icon-group {
+    opacity: 100%;
+  }
+  #main #body #right-pane #icon-buttons:focus {
+    gap: 5px;
+    width: 15.4rem;
+    justify-content: space-between;
+    border-radius: black;
+    position: absolute;
+    left: 0.55rem;
+    top: 37rem;
+    background-color: white;
+    opacity: 100%;
+  }
+  #main #body #right-pane #icon-buttons:focus .send {
+    opacity: 100%;
+  }
+  #main #body #right-pane #icon-buttons:focus #icon-group {
     opacity: 100%;
   }
   #main #body #right-pane .send {
@@ -1109,4 +1590,7 @@ h4 {
     gap: 2px;
     opacity: 0;
   }
+}
+#popularity::after {
+  content: "%";
 }/*# sourceMappingURL=Homepage.css.map */

@@ -1,0 +1,115 @@
+#main-settings {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#main-settings #edit-profile {
+  margin-top: 5%;
+}
+#main-settings #edit-profile h1 {
+  font-family: "Roboto Condensed";
+}
+#main-settings #edit-profile form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+#main-settings #edit-profile form input {
+  margin: 5px 0px 5px 0px;
+  border-radius: 4px 4px 0px 0px;
+  height: 2.5rem;
+  width: 23rem;
+  border-right: none;
+  border-top: none;
+  border-left: none;
+  font-size: 18px;
+  background-color: #faf8f8;
+  border-color: black;
+  font-family: "Roboto";
+}
+#main-settings #edit-profile form input:focus {
+  outline: none;
+  background-color: #d3d1d1;
+  color: black;
+  font-weight: bolder;
+}
+#main-settings #edit-profile form input[type=file]:hover {
+  cursor: pointer;
+}
+#main-settings #edit-profile form input[type=file]::-webkit-file-upload-button {
+  margin: 5px 0px 5px 0px;
+  border-radius: 4px 4px 0px 0px;
+  height: 2.5rem;
+  width: 23rem;
+  border-right: none;
+  border-top: none;
+  border-left: none;
+  font-size: 18px;
+  background-color: #faf8f8;
+  border-color: black;
+  font-family: "Roboto";
+  background-color: black;
+  color: white;
+  width: 40%;
+  margin-right: 5px;
+  border-radius: 3px;
+  height: -webkit-fit-content;
+  height: fit-content;
+  padding: 3px;
+  border: 2px solid black;
+}
+#main-settings #edit-profile form input[type=file]::-webkit-file-upload-button:focus {
+  outline: none;
+  background-color: #d3d1d1;
+  color: black;
+  font-weight: bolder;
+}
+#main-settings #edit-profile form input[type=file]::-webkit-file-upload-button:hover {
+  cursor: pointer;
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+}
+#main-settings #edit-profile form label {
+  display: flex;
+  flex-direction: column;
+}
+#main-settings #edit-profile form label p {
+  font-family: "Roboto Condensed";
+  font-size: 18px;
+  background-color: rgba(0, 0, 0, 0.397);
+  padding: 3px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  color: black;
+}
+#main-settings #edit-profile form button {
+  width: 50%;
+  font-family: "Roboto Condensed";
+  margin: 6px 0px 10px 0px;
+  font-size: 18px;
+  border-color: white;
+  color: white;
+  background-color: black;
+  border-radius: 6px;
+  border-color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  align-self: center;
+  padding: 3px;
+}
+#main-settings #edit-profile form button:hover {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  border-color: black;
+}/*# sourceMappingURL=settings.css.map */

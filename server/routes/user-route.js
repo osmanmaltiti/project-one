@@ -59,6 +59,16 @@ router.patch('/', async(req, res) => {
   res.status(201).send("Quil updated")
 });
 
+router.patch('/update', async(req, res) => {
+  const { uid, fullname, displayname, number } = req.body;
+  console.log(req.body)
+
+  User.updateOne({uid: uid}, {fullname, displayname, number}, (err) => {
+    err && console.log(err);
+  })
+  res.status(201).send("User Updated")
+});
+
 router.patch('/:uid', (req, res) => {
   const { uid } = req.params;
   const { profileUrl } = req.body;

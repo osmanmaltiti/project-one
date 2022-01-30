@@ -142,14 +142,15 @@
   width: 8rem;
   font-size: 17px;
   font-family: "Roboto condensed";
-  border-radius: 6px;
   background: white;
+  border-radius: 3px;
 }
 
 #popup-delete:hover {
   cursor: pointer;
   color: red;
   font-weight: bold;
+  border-color: red;
 }
 
 @media (max-width: 850px) {
@@ -315,6 +316,9 @@
   }
 }
 @media (max-width: 458px) {
+  #main-card #write-area {
+    font-size: 14px !important;
+  }
   #main-card #card-extras-buttons {
     display: flex;
     flex-direction: row;

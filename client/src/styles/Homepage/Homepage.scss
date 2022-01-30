@@ -22,6 +22,7 @@
       @include signButton;
       width: 5rem; background: none;
       color: black; border: none;
+      border-radius: 3px;
       &:hover{
         color: red; outline: 1px solid red;
       }
@@ -55,7 +56,7 @@
         #left-item-one{
           display: flex; align-items: center; width: 90%;
           gap: 5px; margin-left: 5px; height: 2rem;
-          padding: 2px 0 2px 1rem; background-color: rgba(222, 184, 135, 0.435);
+          padding: 2px 0 2px 1rem; 
           border-radius: 4px; margin-top: -1rem;
         }
         #left-item-two{
@@ -64,6 +65,7 @@
           span{
             display: flex; align-items: center; width: 90%;
             gap: 5px; margin-left: 5px; height: 0px; margin-top: 7px;
+            
           }
         }
         #left-item-three{
@@ -84,6 +86,10 @@
     #middle-pane{
       @include middlePane;
       border-radius: 1px;
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.342);
+        outline: 1rem; border-radius: 6px;
+      }
     }
 
 
@@ -227,19 +233,20 @@ h4{
       display: flex; flex-direction: row; width: 100%;
   
       #left-pane{
-        width: 12%; display: flex; flex-direction: column;
+        width: 10%; display: flex; flex-direction: column;
         align-items: center; justify-content: flex-start;
-        margin-left: 15px; margin-top: -0.5rem;
+        margin-left: 5px; margin-top: -0.5rem;
         
         #left-pane-items{
           display: flex; flex-direction: column;
           box-shadow: 0px 0px 5px 2px rgb(212, 211, 211);
-          width: 100%; margin-top: 1rem; border-radius: 10px;
-          height: 40%; overflow:hidden; padding: 5px;
-          align-items: center; 
+          width: 2.5rem; margin-top: 1rem; border-radius: 6px;
+          height: fit-content; overflow:hidden; padding: 5px 0 0 12px;
+          align-items: center; padding-bottom: 1.5rem;
           #user-avi{
             width: 3rem; height: 3rem; background-size: cover;
             background-position: center; border-radius: 50%;
+            margin-left: -0.8rem;
           }
           #left-item-one{
             display: flex; align-items: center; width: 0; 
@@ -298,13 +305,43 @@ h4{
         justify-content: space-between; padding-bottom: 0rem; 
         align-items: flex-end;
         
+        #menu-items{
+          display: flex; flex-direction: column; 
+          height: fit-content; width: 0rem;
+          justify-content: space-evenly; align-items: center;
+          border-radius: 5px; 
+          box-shadow: 0px 0px 5px 2px rgb(212, 211, 211);
+          margin: 0.5rem 0.5rem 0px 0px; gap: 10px;  
+          background-color: white; overflow: hidden;
+          &:hover{
+            width: 15rem !important; position: relative;
+            background-color: white;
+            .menu-buttons{
+              width: 90%; color: white;
+            }
+          }
+        }
+        .menu-buttons{
+            height: 2rem; width: 0rem; border-radius: 15px;
+            font-family: 'Roboto'; font-size: 18px;
+            border-color: black; overflow: hidden;
+            background-color: black; color: black;
+            padding: 0px;
+            &:hover{
+              cursor: pointer; background-color: white;
+              color: black !important; 
+              border-color: black; font-weight: bold;
+            }  
+        }
+
         #write{
           height: 10rem; width: 0.7rem;
           font-family: 'Roboto'; font-size: 18px; 
           margin-right: 0.5rem; overflow: hidden;
           border-radius: 5px; resize: none;
           border: 2px solid black; background-color: white;
-          margin-top: 8rem;  box-shadow: 0px 0px 5px 2px rgb(212, 211, 211);
+          margin-top: 8rem;  
+          box-shadow: 0px 0px 5px 2px rgb(212, 211, 211);
           &::placeholder{
             opacity: 0;
           }
@@ -323,31 +360,7 @@ h4{
             }
           }
         }
-        #menu-items{
-          display: flex; flex-direction: column; height: fit-content; width: 0rem;
-          justify-content: space-evenly; align-items: center;
-          border-radius: 5px; box-shadow: 0px 0px 5px 2px rgb(212, 211, 211);
-          margin: 0.5rem 0.5rem 0px 0px; gap: 10px; padding: 10px; 
-          background-color: white; overflow: hidden;
-          &:hover{
-            width: 15rem; position: relative;
-            background-color: white;
-            .menu-buttons{
-              width: 90%; 
-            }
-          }
-        }
-        .menu-buttons{
-            height: 2rem; width: 0rem; border-radius: 15px;
-            font-family: 'Roboto'; font-size: 18px; border-color: black; overflow: hidden;
-            background-color: black; color: white;
-            padding: 0px;
-            &:hover{
-              cursor: pointer; background-color: white;
-              color: black; border-color: black; font-weight: bold;
-            }
-          
-        }
+        
         #icon-buttons{
           display: flex; flex-direction: row-reverse; 
           gap: 5px; width: 1rem; justify-content: space-between; 
@@ -356,6 +369,17 @@ h4{
           overflow: hidden;  box-shadow: 0px 0px 5px 2px rgb(212, 211, 211);
           
           &:hover{
+            gap: 5px; width: 15.4rem; justify-content: space-between; position: relative;
+            background-color: white; border-color: black;
+            opacity: 100%;
+            .send{
+              opacity: 100%
+            }
+            #icon-group{
+              opacity: 100%
+            }
+          }
+          &:focus{
             gap: 5px; width: 15.4rem; justify-content: space-between; position: relative;
             background-color: white; border-color: black;
             opacity: 100%;
@@ -443,15 +467,261 @@ h4{
         #left-pane-items{
           display: flex; flex-direction: column;
           box-shadow: 0px 0px 5px 2px rgb(212, 211, 211);
-          width: 100%; margin-top: 1rem; border-radius: 3px;
-          height: 2rem; overflow:hidden; padding: 5px;
-          align-items: center; 
-          &:hover{
-            height: 14rem;
-          }
+          width: 70%; margin-top: 1rem; border-radius: 3px;
+          height: fit-content; overflow: hidden; 
+          align-items: center; padding-left: 1rem;
+          padding-bottom: 1.5rem;
+          
           #user-avi{
-            width: 3.5rem; height: 3.5rem; background-size: cover;
-            background-position: center; 
+            width: 2.7rem; height: 2.5rem; background-size: cover;
+            background-position: center; border-radius: 3px;
+          }
+          #left-item-one{
+            display: flex; align-items: center; width: 0; 
+            padding: 2px 0 2px 1rem; background-color: white;
+            border-radius: 4px; margin-top: -2rem;
+            height: 0; 
+            h4{
+              height: 0; width: 0; opacity: 0;
+            }
+          }
+          #left-item-two{
+            display: flex; flex-direction: column;
+            margin-top: -1.5rem; gap: 2rem;
+            span{
+              display: flex; flex-direction: row;
+              justify-content: space-between;
+              margin-left: -0.5rem;
+              h4{
+                font-size: 22px;
+              }
+            }
+          }
+          #left-item-three{
+            display: flex; flex-direction: column; gap: 3rem;
+            margin-top: 7px;
+            span{
+              display: flex; flex-direction: row;
+              align-items: center; gap: 2px; margin-left: -0.35rem;
+              h4{
+                font-size: 20px;
+              }
+            }
+          }
+        }
+        
+      }
+  
+  
+      #middle-pane{
+        @include middlePane;
+        margin-left: 0.3rem; width: 100%;
+        border-radius: 1px; margin-right: 1.5%;
+        &::-webkit-scrollbar{
+          width: 0.3rem; background-color: white;
+          opacity: 50%; border-radius: 6px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: rgba(128, 128, 128, 0.075);
+          outline: 1rem; border-radius: 6px;
+        }
+      }
+  
+  
+      #right-pane{
+        width: 0%; display: flex; flex-direction: column;
+        justify-content: flex-end; padding-bottom: 0rem; 
+        align-items: flex-end;
+        
+        #write{
+          height: 10rem; width: 0.7rem;
+          font-family: 'Roboto'; font-size: 18px; 
+          margin-right: 0.5rem; overflow: hidden;
+          border-radius: 5px; resize: none;
+          border: 2px solid white; background-color: white;
+           box-shadow: 0px 0px 5px 2px rgb(212, 211, 211);
+          position: absolute; left: 0.5rem; top: 26rem;
+          &::placeholder{
+            opacity: 0;
+          }
+          &:focus{
+            font-weight: bold; width: 15rem;
+            position: absolute; background-color: white;
+            left: 0.5rem; top: 26rem;
+
+            &::placeholder{
+              opacity: 100%;
+            }
+          }
+          &:hover{
+            width: 15rem; background-color: white;
+            position: absolute; left: 0.5rem; top: 26rem;
+            border-color: black;
+            &::placeholder{
+              opacity: 100%;
+            }
+          }
+        }
+        #menu-items{
+          display: flex; flex-direction: column; height: fit-content; width: 1rem !important;
+          justify-content: space-evenly; align-items: center;
+          border-radius: 5px; box-shadow: 0px 0px 5px 2px rgb(212, 211, 211);
+          margin: 0.5rem 0.5rem 0px 0px; gap: 10px; padding: 10px; 
+          background-color: white; overflow: hidden;
+          position: absolute; left: 0.5rem; top: 20rem;
+
+          &:hover{
+            width: 15rem; position: absolute; 
+            left: 0.5rem; top: 20rem;
+            background-color: white;
+            .menu-buttons{
+              width: 90%; color: white !important;
+            }
+          }
+          &:focus{
+            width: 15rem; position: absolute; 
+            left: 0.5rem; top: 20rem;
+            background-color: white;
+            .menu-buttons{
+              width: 90%; 
+            }
+          }
+        }
+        .menu-buttons{
+            height: 2rem; width: 0rem; border-radius: 15px;
+            font-family: 'Roboto'; font-size: 18px; border-color: black; overflow: hidden;
+            background-color: black; color: black;
+            padding: 0px;
+            &:hover{
+              cursor: pointer; background-color: white;
+              color: black; border-color: black; font-weight: bold;
+            }
+          
+        }
+        #icon-buttons{
+          display: flex; flex-direction: row-reverse; 
+          gap: 5px; width: 1rem; justify-content: space-between; 
+          outline: 1px solid white; border-radius: 3px; 
+          margin-right: 0.6rem;  background-color: white;
+          overflow: hidden;  box-shadow: 0px 0px 5px 2px rgb(212, 211, 211);
+          position: absolute; left: 0.5rem; top: 48rem;
+          
+          &:hover{
+            gap: 5px; width: 15.4rem; justify-content: space-between; border-radius: black;
+            position: absolute; left: 0.5rem; top: 48rem;
+            background-color: white;
+            opacity: 100%;
+            .send{
+              opacity: 100%
+            }
+            #icon-group{
+              opacity: 100%
+            }
+          }
+          &:focus{
+            gap: 5px; width: 15.4rem; justify-content: space-between; border-radius: black;
+            position: absolute; left: 0.5rem; top: 48rem;
+            background-color: white;
+            opacity: 100%;
+            .send{
+              opacity: 100%
+            }
+            #icon-group{
+              opacity: 100%
+            }
+          }
+        }
+
+        .send{
+            @include signButton;
+            width: 5rem; height: 2rem; display: flex; flex-direction: row;
+            justify-content: space-between;
+            align-items: center; margin-right: 5px;
+            opacity: 0;
+            &:hover{
+              cursor: pointer;
+            }
+            &:focus{
+              outline: none;
+            }
+        }
+        .icon-buttons{
+          border: none; background-color: inherit;
+          width: 1.2rem; margin-right: 7px; 
+          &:hover{
+            cursor: pointer; transform: scale(1.05);
+          }
+          &:focus{
+            outline: none;
+          }
+        }
+        #icon-group{
+          display: flex; flex-direction: row;
+          gap: 2px; opacity: 0;
+        }
+      }
+    }
+    
+  }  
+}
+
+@media (max-height: 825px) and (max-width: 458px){
+  #main{
+    display: flex; flex-direction: column;
+    height: 100%; width: 100%; position: fixed;
+
+    #header{
+      display: flex; flex-direction: row;
+      padding: 1rem 0rem 1rem 0rem; height: 5%;
+      width:100%; align-items: center;
+      justify-content:space-between;
+      box-shadow: 0px 0px 5px 2px rgb(212, 211, 211);
+      padding-bottom: 10px;
+      #nav-bar{
+        padding-right: 1rem;
+      }
+      #header-logo{
+        padding-left: 1rem; height: 2rem
+      }
+      
+      .signOut{
+        @include signButton; opacity: 0;
+        width: 0rem; background: none;
+        color: black; border: none;
+        &:hover{
+          color: red; outline: 1px solid red;
+        }
+      }
+      &:hover{
+        .signOut{
+          width: fit-content; opacity: 100%;
+        }
+      }
+    }
+
+    #body{
+      display: flex; flex-direction: row; width: 100%;
+  
+      #left-pane{
+        width: 12%; display: flex; flex-direction: column;
+        align-items: center; justify-content: flex-start;
+        margin-left: 10px; margin-top: -0.5rem;
+        
+        #left-pane-items{
+          display: flex; flex-direction: column;
+          box-shadow: 0px 0px 5px 2px rgb(212, 211, 211);
+          width: 100%; margin-top: 1rem; border-radius: 3px;
+          height: 1.8rem; overflow: hidden; padding: 5px;
+          align-items: center; 
+          #user-avi{
+            width: 95%; height: 10rem; background-size: cover;
+            background-position: center; border-radius: 3px;
+          }
+          &:hover{
+            height: 6rem;
+            #user-avi{
+              width: 3rem; height: 8rem; border-radius: 3px;
+            }
           }
           #left-item-one{
             display: flex; align-items: center; width: 0; 
@@ -517,14 +787,14 @@ h4{
           border-radius: 5px; resize: none;
           border: 2px solid white; background-color: white;
            box-shadow: 0px 0px 5px 2px rgb(212, 211, 211);
-          position: absolute; left: 0.5rem; top: 26rem;
+          position: absolute; left: 0.5rem; top: 17rem;
           &::placeholder{
             opacity: 0;
           }
           &:focus{
             font-weight: bold; width: 15rem;
             position: absolute; background-color: white;
-            left: 0.5rem; top: 35rem;
+            left: 0.5rem; top: 17rem;
 
             &::placeholder{
               opacity: 100%;
@@ -532,7 +802,7 @@ h4{
           }
           &:hover{
             width: 15rem; background-color: white;
-            position: absolute; left: 0.5rem; top: 35rem;
+            position: absolute; left: 0.5rem; top: 17rem;
             border-color: black;
             &::placeholder{
               opacity: 100%;
@@ -545,11 +815,19 @@ h4{
           border-radius: 5px; box-shadow: 0px 0px 5px 2px rgb(212, 211, 211);
           margin: 0.5rem 0.5rem 0px 0px; gap: 10px; padding: 10px; 
           background-color: white; overflow: hidden;
-          position: absolute; left: 0.5rem; top: 20rem;
+          position: absolute; left: 0.5rem; top: 12rem;
 
           &:hover{
             width: 15rem; position: absolute; 
-            left: 0.5rem; top: 20rem;
+            left: 0.5rem; top: 12rem;
+            background-color: white;
+            .menu-buttons{
+              width: 90%; 
+            }
+          }
+          &:focus{
+            width: 12rem; position: absolute; 
+            left: 0.5rem; top: 10rem;
             background-color: white;
             .menu-buttons{
               width: 90%; 
@@ -573,11 +851,23 @@ h4{
           outline: 1px solid white; border-radius: 3px; 
           margin-right: 0.6rem;  background-color: white;
           overflow: hidden;  box-shadow: 0px 0px 5px 2px rgb(212, 211, 211);
-          position: absolute; left: 0.5rem; top: 48rem;
+          position: absolute; left: 0.55rem; top: 37rem;
           
           &:hover{
             gap: 5px; width: 15.4rem; justify-content: space-between; border-radius: black;
-            position: absolute; left: 0.5rem; top: 48rem;
+            position: absolute; left: 0.55rem; top: 37rem;
+            background-color: white;
+            opacity: 100%;
+            .send{
+              opacity: 100%
+            }
+            #icon-group{
+              opacity: 100%
+            }
+          }
+          &:focus{
+            gap: 5px; width: 15.4rem; justify-content: space-between; border-radius: black;
+            position: absolute; left: 0.55rem; top: 37rem;
             background-color: white;
             opacity: 100%;
             .send{
@@ -588,6 +878,7 @@ h4{
             }
           }
         }
+
         .send{
             @include signButton;
             width: 5rem; height: 2rem; display: flex; flex-direction: row;
@@ -619,4 +910,9 @@ h4{
     }
     
   }  
+}
+#popularity{
+  &::after{
+    content: '%';
+  }
 }
